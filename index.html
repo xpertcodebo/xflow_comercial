@@ -11,12 +11,14 @@
   <title>xFlowPRO — Automatiza tus procesos sin código</title>
   <link rel="icon" href="uploads/logo_black.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     html { scroll-behavior: smooth; }
     body { margin: 0; font-family: 'Inter', system-ui, -apple-system, sans-serif; -webkit-font-smoothing: antialiased; }
+    /* Sistema de marca ElevaX: titulos en Plus Jakarta Sans, cuerpo en Inter. */
+    h1, h2, h3 { font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif; }
     * { box-sizing: border-box; }
-    ::selection { background: #6366f1; color: #fff; }
+    ::selection { background: #7C3AED; color: #fff; }
     @keyframes floatY { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
     @keyframes pulseDot { 0%, 100% { box-shadow: 0 0 0 0 rgba(5,150,105,.45); } 50% { box-shadow: 0 0 0 6px rgba(5,150,105,0); } }
     @keyframes pulseDotAmber { 0%, 100% { box-shadow: 0 0 0 0 rgba(217,119,6,.45); } 50% { box-shadow: 0 0 0 6px rgba(217,119,6,0); } }
@@ -42,7 +44,7 @@
     <div style="max-width:1280px; margin:0 auto; padding:14px clamp(20px,4vw,40px); display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
       <a href="#top" style="display:flex; align-items:center; gap:10px; text-decoration:none;">
         <img src="{{ logoIconSrc }}" alt="xFlowPRO" style="width:30px; height:auto; display:block;">
-        <span style="font-size:19px; font-weight:800; letter-spacing:-0.02em; color:{{ colors.text }};">xflow<span style="color:#7c3aed;">PRO</span></span>
+        <span style="font-size:19px; font-weight:800; letter-spacing:-0.02em; color:{{ colors.text }};">xflow<span style="color:#7C3AED;">PRO</span></span>
       </a>
 
       <nav style="display:flex; align-items:center; gap:clamp(14px,2.4vw,28px); flex-wrap:wrap;">
@@ -71,7 +73,7 @@
 
         <a href="https://app.xflowpro.com" style="color:{{ colors.textSoft }}; text-decoration:none; font-weight:600; font-size:14px; white-space:nowrap;" style-hover="color:{{ colors.text }};">{{ t.nav.acceder }}</a>
 
-        <a href="#contacto" style="background:#0891b2; color:#ffffff; text-decoration:none; font-weight:700; font-size:14px; padding:10px 18px; border-radius:10px; white-space:nowrap;" style-hover="background:#0a7590;">{{ t.nav.demo }}</a>
+        <a href="#contacto" style="background:#2563EB; color:#ffffff; text-decoration:none; font-weight:700; font-size:14px; padding:10px 18px; border-radius:10px; white-space:nowrap;" style-hover="background:#1D4ED8;">{{ t.nav.demo }}</a>
       </div>
     </div>
   </header>
@@ -81,16 +83,16 @@
     <div style="max-width:1280px; margin:0 auto; display:flex; align-items:center; gap:clamp(32px,5vw,64px); flex-wrap:wrap;">
 
       <div style="flex:1 1 460px; min-width:300px;">
-        <div style="display:inline-flex; align-items:center; gap:8px; background:{{ colors.indigoBg }}; color:#6366f1; padding:7px 14px; border-radius:20px; font-size:13px; font-weight:700; margin-bottom:22px;">
-          <span style="width:6px; height:6px; border-radius:50%; background:#6366f1;"></span>
+        <div style="display:inline-flex; align-items:center; gap:8px; background:{{ colors.indigoBg }}; color:#7C3AED; padding:7px 14px; border-radius:20px; font-size:13px; font-weight:700; margin-bottom:22px;">
+          <span style="width:6px; height:6px; border-radius:50%; background:#7C3AED;"></span>
           {{ t.hero.eyebrow }}
         </div>
         <h1 style="font-size:clamp(34px,4.6vw,54px); line-height:1.08; font-weight:800; letter-spacing:-0.02em; margin:0 0 22px; color:{{ colors.text }}; text-wrap:pretty;">{{ t.hero.title }}</h1>
         <p style="font-size:clamp(16px,1.6vw,19px); line-height:1.55; color:{{ colors.textSoft }}; margin:0 0 32px; max-width:520px; text-wrap:pretty;">{{ t.hero.subtitle }}</p>
 
         <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-bottom:26px;">
-          <a href="#contacto" style="background:#0891b2; color:#fff; text-decoration:none; font-weight:700; font-size:15.5px; padding:15px 26px; border-radius:11px; box-shadow:0 8px 20px rgba(8,145,178,.28);" style-hover="background:#0a7590;">{{ t.hero.ctaPrimary }}</a>
-          <a href="#funcionalidades" style="color:{{ colors.text }}; text-decoration:none; font-weight:700; font-size:15.5px; padding:15px 26px; border-radius:11px; border:1.5px solid {{ colors.border }};" style-hover="border-color:#6366f1;">{{ t.hero.ctaSecondary }}</a>
+          <a href="#contacto" style="background:#2563EB; color:#fff; text-decoration:none; font-weight:700; font-size:15.5px; padding:15px 26px; border-radius:11px; box-shadow:0 8px 20px rgba(37,99,235,.28);" style-hover="background:#1D4ED8;">{{ t.hero.ctaPrimary }}</a>
+          <a href="#funcionalidades" style="color:{{ colors.text }}; text-decoration:none; font-weight:700; font-size:15.5px; padding:15px 26px; border-radius:11px; border:1.5px solid {{ colors.border }};" style-hover="border-color:#7C3AED;">{{ t.hero.ctaSecondary }}</a>
         </div>
 
         <div style="display:flex; align-items:center; gap:10px; color:{{ colors.textFaint }}; font-size:13.5px;">
@@ -108,16 +110,16 @@
             <span style="width:10px; height:10px; border-radius:50%; background:#f59e0b;"></span>
             <span style="width:10px; height:10px; border-radius:50%; background:#22c55e;"></span>
             <span style="color:#cbd5e1; font-size:12.5px; font-weight:600; margin-left:6px;">{{ t.hero.mockupTag }}</span>
-            <span style="margin-left:auto; background:#0891b2; color:#fff; font-size:11.5px; font-weight:700; padding:5px 10px; border-radius:7px;">{{ t.hero.mockupPublish }}</span>
+            <span style="margin-left:auto; background:#2563EB; color:#fff; font-size:11.5px; font-weight:700; padding:5px 10px; border-radius:7px;">{{ t.hero.mockupPublish }}</span>
           </div>
 
           <div style="display:flex; flex-direction:column; gap:14px; position:relative; z-index:1;">
             <div style="display:flex; align-items:center; gap:10px;">
               <span style="width:66px; flex-shrink:0; font-size:11px; color:#94a3b8; font-weight:700; text-transform:uppercase; letter-spacing:.04em;">{{ t.hero.lane1 }}</span>
               <div style="flex:1; display:flex; align-items:center; gap:6px;">
-                <span style="width:34px; height:34px; border-radius:9px; background:#6366f1; flex-shrink:0;"></span>
+                <span style="width:34px; height:34px; border-radius:9px; background:#7C3AED; flex-shrink:0;"></span>
                 <span style="flex:1; height:2px; background:#334155;"></span>
-                <span style="width:34px; height:34px; border-radius:9px; background:#0891b2; flex-shrink:0;"></span>
+                <span style="width:34px; height:34px; border-radius:9px; background:#2563EB; flex-shrink:0;"></span>
                 <span style="flex:1; height:2px; background:#334155;"></span>
                 <span style="width:34px; height:34px; border-radius:50%; background:#334155; flex-shrink:0; display:flex; align-items:center; justify-content:center;">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 12h11m0 0l-4-4m4 4l-4 4" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -127,7 +129,7 @@
             <div style="display:flex; align-items:center; gap:10px;">
               <span style="width:66px; flex-shrink:0; font-size:11px; color:#94a3b8; font-weight:700; text-transform:uppercase; letter-spacing:.04em;">{{ t.hero.lane2 }}</span>
               <div style="flex:1; display:flex; align-items:center; gap:6px;">
-                <span style="width:34px; height:34px; border-radius:9px; background:#7c3aed; flex-shrink:0;"></span>
+                <span style="width:34px; height:34px; border-radius:9px; background:#7C3AED; flex-shrink:0;"></span>
                 <span style="flex:1; height:2px; background:#334155;"></span>
                 <span style="width:34px; height:34px; border-radius:9px; transform:rotate(45deg); background:#d97706; flex-shrink:0;"></span>
                 <span style="flex:1; height:2px; background:#334155;"></span>
@@ -139,7 +141,7 @@
               <div style="flex:1; display:flex; align-items:center; gap:6px;">
                 <span style="width:34px; height:34px; border-radius:50%; background:#334155; flex-shrink:0;"></span>
                 <span style="flex:1; height:2px; background:#334155;"></span>
-                <span style="width:34px; height:34px; border-radius:9px; background:#0891b2; flex-shrink:0;"></span>
+                <span style="width:34px; height:34px; border-radius:9px; background:#2563EB; flex-shrink:0;"></span>
               </div>
             </div>
           </div>
@@ -183,7 +185,7 @@
         </div>
 
         <div style="background:{{ colors.card }}; border:1px solid {{ colors.border }}; border-radius:14px; padding:26px; box-shadow:{{ colors.shadow }};">
-          <div style="width:42px; height:42px; border-radius:10px; background:{{ colors.violetBg }}; color:#7c3aed; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+          <div style="width:42px; height:42px; border-radius:10px; background:{{ colors.violetBg }}; color:#7C3AED; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
             <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M3 6l9 7 9-7" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>
           </div>
           <h3 style="font-size:17px; font-weight:700; margin:0 0 8px; color:{{ colors.text }};">{{ t.problem.p3title }}</h3>
@@ -191,7 +193,7 @@
         </div>
 
         <div style="background:{{ colors.card }}; border:1px solid {{ colors.border }}; border-radius:14px; padding:26px; box-shadow:{{ colors.shadow }};">
-          <div style="width:42px; height:42px; border-radius:10px; background:{{ colors.tealBg }}; color:#0891b2; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+          <div style="width:42px; height:42px; border-radius:10px; background:{{ colors.tealBg }}; color:#2563EB; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
             <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><line x1="12" y1="7" x2="12" y2="12.5" stroke="currentColor" stroke-width="1.6"/><line x1="12" y1="12.5" x2="15.2" y2="14.5" stroke="currentColor" stroke-width="1.6"/></svg>
           </div>
           <h3 style="font-size:17px; font-weight:700; margin:0 0 8px; color:{{ colors.text }};">{{ t.problem.p4title }}</h3>
@@ -212,7 +214,7 @@
       <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px;">
 
         <div style="background:{{ colors.card }}; border:1px solid {{ colors.border }}; border-radius:14px; padding:26px; box-shadow:{{ colors.shadow }};">
-          <div style="width:42px; height:42px; border-radius:10px; background:{{ colors.indigoBg }}; color:#6366f1; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+          <div style="width:42px; height:42px; border-radius:10px; background:{{ colors.indigoBg }}; color:#7C3AED; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
             <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><circle cx="4" cy="12" r="2.1" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="6" r="2.1" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="18" r="2.1" stroke="currentColor" stroke-width="1.6"/><circle cx="20" cy="12" r="2.1" stroke="currentColor" stroke-width="1.6"/><line x1="6" y1="11" x2="10" y2="7.3" stroke="currentColor" stroke-width="1.6"/><line x1="6" y1="13" x2="10" y2="16.7" stroke="currentColor" stroke-width="1.6"/><line x1="14" y1="6.7" x2="18" y2="11" stroke="currentColor" stroke-width="1.6"/><line x1="14" y1="17.3" x2="18" y2="13" stroke="currentColor" stroke-width="1.6"/></svg>
           </div>
           <h3 style="font-size:16.5px; font-weight:700; margin:0 0 8px; color:{{ colors.text }};">{{ t.features.f1title }}</h3>
@@ -220,7 +222,7 @@
         </div>
 
         <div style="background:{{ colors.card }}; border:1px solid {{ colors.border }}; border-radius:14px; padding:26px; box-shadow:{{ colors.shadow }};">
-          <div style="width:42px; height:42px; border-radius:10px; background:{{ colors.tealBg }}; color:#0891b2; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+          <div style="width:42px; height:42px; border-radius:10px; background:{{ colors.tealBg }}; color:#2563EB; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
             <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M10 8.5L16 12L10 15.5Z" fill="currentColor"/></svg>
           </div>
           <h3 style="font-size:16.5px; font-weight:700; margin:0 0 8px; color:{{ colors.text }};">{{ t.features.f2title }}</h3>
@@ -244,7 +246,7 @@
         </div>
 
         <div style="background:{{ colors.card }}; border:1px solid {{ colors.border }}; border-radius:14px; padding:26px; box-shadow:{{ colors.shadow }};">
-          <div style="width:42px; height:42px; border-radius:10px; background:{{ colors.violetBg }}; color:#7c3aed; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+          <div style="width:42px; height:42px; border-radius:10px; background:{{ colors.violetBg }}; color:#7C3AED; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
             <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="5" r="2.1" stroke="currentColor" stroke-width="1.6"/><circle cx="6" cy="18" r="2.1" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="18" r="2.1" stroke="currentColor" stroke-width="1.6"/><line x1="10.5" y1="7" x2="7" y2="16" stroke="currentColor" stroke-width="1.6"/><line x1="13.5" y1="7" x2="17" y2="16" stroke="currentColor" stroke-width="1.6"/></svg>
           </div>
           <h3 style="font-size:16.5px; font-weight:700; margin:0 0 8px; color:{{ colors.text }};">{{ t.features.f5title }}</h3>
@@ -260,7 +262,7 @@
         </div>
 
         <div style="background:{{ colors.card }}; border:1px solid {{ colors.border }}; border-radius:14px; padding:26px; box-shadow:{{ colors.shadow }};">
-          <div style="width:42px; height:42px; border-radius:10px; background:{{ colors.indigoBg }}; color:#6366f1; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+          <div style="width:42px; height:42px; border-radius:10px; background:{{ colors.indigoBg }}; color:#7C3AED; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
             <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><rect x="7" y="2" width="10" height="20" rx="2" stroke="currentColor" stroke-width="1.6"/><line x1="10.5" y1="19" x2="13.5" y2="19" stroke="currentColor" stroke-width="1.6"/></svg>
           </div>
           <h3 style="font-size:16.5px; font-weight:700; margin:0 0 8px; color:{{ colors.text }};">{{ t.features.f7title }}</h3>
@@ -268,7 +270,7 @@
         </div>
 
         <div style="background:{{ colors.card }}; border:1px solid {{ colors.border }}; border-radius:14px; padding:26px; box-shadow:{{ colors.shadow }};">
-          <div style="width:42px; height:42px; border-radius:10px; background:{{ colors.tealBg }}; color:#0891b2; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+          <div style="width:42px; height:42px; border-radius:10px; background:{{ colors.tealBg }}; color:#2563EB; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
             <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M12 3a9 9 0 000 18 7 7 0 010-18Z" fill="currentColor"/></svg>
           </div>
           <h3 style="font-size:16.5px; font-weight:700; margin:0 0 8px; color:{{ colors.text }};">{{ t.features.f8title }}</h3>
@@ -289,17 +291,17 @@
 
       <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:24px;">
         <div style="text-align:left;">
-          <div style="width:44px; height:44px; border-radius:50%; background:#6366f1; color:#fff; font-weight:800; font-size:17px; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">1</div>
+          <div style="width:44px; height:44px; border-radius:50%; background:#7C3AED; color:#fff; font-weight:800; font-size:17px; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">1</div>
           <h3 style="font-size:16.5px; font-weight:700; margin:0 0 8px; color:{{ colors.text }};">{{ t.how.s1title }}</h3>
           <p style="font-size:14px; line-height:1.55; color:{{ colors.textSoft }}; margin:0;">{{ t.how.s1desc }}</p>
         </div>
         <div style="text-align:left;">
-          <div style="width:44px; height:44px; border-radius:50%; background:#0891b2; color:#fff; font-weight:800; font-size:17px; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">2</div>
+          <div style="width:44px; height:44px; border-radius:50%; background:#2563EB; color:#fff; font-weight:800; font-size:17px; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">2</div>
           <h3 style="font-size:16.5px; font-weight:700; margin:0 0 8px; color:{{ colors.text }};">{{ t.how.s2title }}</h3>
           <p style="font-size:14px; line-height:1.55; color:{{ colors.textSoft }}; margin:0;">{{ t.how.s2desc }}</p>
         </div>
         <div style="text-align:left;">
-          <div style="width:44px; height:44px; border-radius:50%; background:#7c3aed; color:#fff; font-weight:800; font-size:17px; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">3</div>
+          <div style="width:44px; height:44px; border-radius:50%; background:#7C3AED; color:#fff; font-weight:800; font-size:17px; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">3</div>
           <h3 style="font-size:16.5px; font-weight:700; margin:0 0 8px; color:{{ colors.text }};">{{ t.how.s3title }}</h3>
           <p style="font-size:14px; line-height:1.55; color:{{ colors.textSoft }}; margin:0;">{{ t.how.s3desc }}</p>
         </div>
@@ -316,7 +318,7 @@
   <section id="app" data-reveal="true" style="padding:clamp(64px,8vw,110px) clamp(20px,6vw,40px); background:{{ colors.heroGradient }};">
     <div style="max-width:1100px; margin:0 auto;">
       <div style="max-width:660px; margin:0 auto 48px; text-align:center;">
-        <span style="display:inline-block; background:#0891b2; color:#fff; font-size:12px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; padding:6px 13px; border-radius:20px; margin-bottom:18px;">{{ t.app.badge }}</span>
+        <span style="display:inline-block; background:#2563EB; color:#fff; font-size:12px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; padding:6px 13px; border-radius:20px; margin-bottom:18px;">{{ t.app.badge }}</span>
         <h2 style="font-size:clamp(28px,3.4vw,40px); font-weight:800; letter-spacing:-0.02em; margin:0 0 14px; color:{{ colors.text }}; text-wrap:pretty;">{{ t.app.title }}</h2>
         <p style="font-size:16.5px; line-height:1.6; color:{{ colors.textSoft }}; margin:0; text-wrap:pretty;">{{ t.app.subtitle }}</p>
       </div>
@@ -324,7 +326,7 @@
       <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:22px; margin-bottom:34px;">
         <div style="background:{{ colors.card }}; border:1px solid {{ colors.border }}; border-radius:16px; padding:28px; box-shadow:{{ colors.shadow }};">
           <div style="width:42px; height:42px; border-radius:11px; background:{{ colors.tealBg }}; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
-            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M7 8v8"/><path d="M11 8v8"/><path d="M15 8v8"/></svg>
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M7 8v8"/><path d="M11 8v8"/><path d="M15 8v8"/></svg>
           </div>
           <h3 style="font-size:17.5px; font-weight:700; margin:0 0 9px; color:{{ colors.text }};">{{ t.app.a1title }}</h3>
           <p style="font-size:14.5px; line-height:1.6; color:{{ colors.textSoft }}; margin:0;">{{ t.app.a1desc }}</p>
@@ -332,7 +334,7 @@
 
         <div style="background:{{ colors.card }}; border:1px solid {{ colors.border }}; border-radius:16px; padding:28px; box-shadow:{{ colors.shadow }};">
           <div style="width:42px; height:42px; border-radius:11px; background:{{ colors.indigoBg }}; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
-            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
           </div>
           <h3 style="font-size:17.5px; font-weight:700; margin:0 0 9px; color:{{ colors.text }};">{{ t.app.a2title }}</h3>
           <p style="font-size:14.5px; line-height:1.6; color:{{ colors.textSoft }}; margin:0;">{{ t.app.a2desc }}</p>
@@ -340,7 +342,7 @@
 
         <div style="background:{{ colors.card }}; border:1px solid {{ colors.border }}; border-radius:16px; padding:28px; box-shadow:{{ colors.shadow }};">
           <div style="width:42px; height:42px; border-radius:11px; background:{{ colors.violetBg }}; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
-            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2.5"/><path d="M12 18h.01"/></svg>
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2.5"/><path d="M12 18h.01"/></svg>
           </div>
           <h3 style="font-size:17.5px; font-weight:700; margin:0 0 9px; color:{{ colors.text }};">{{ t.app.a3title }}</h3>
           <p style="font-size:14.5px; line-height:1.6; color:{{ colors.textSoft }}; margin:0;">{{ t.app.a3desc }}</p>
@@ -375,7 +377,7 @@
             <div style="font-size:32px; font-weight:800; color:#991b1b;">8%</div>
           </div>
           <div style="background:{{ colors.indigoBg }}; border-radius:12px; padding:18px;">
-            <div style="font-size:12.5px; font-weight:700; color:#6366f1; text-transform:uppercase; letter-spacing:.04em; margin-bottom:6px;">{{ t.dash.kCycle }}</div>
+            <div style="font-size:12.5px; font-weight:700; color:#7C3AED; text-transform:uppercase; letter-spacing:.04em; margin-bottom:6px;">{{ t.dash.kCycle }}</div>
             <div style="font-size:32px; font-weight:800; color:#4338ca;">2.4<span style="font-size:16px; font-weight:700;"> {{ t.dash.days }}</span></div>
           </div>
         </div>
@@ -386,15 +388,15 @@
             <div style="display:flex; flex-direction:column; gap:12px;">
               <div>
                 <div style="display:flex; justify-content:space-between; font-size:13px; color:{{ colors.textSoft }}; margin-bottom:5px;"><span>{{ t.dash.flow1 }}</span><span>82%</span></div>
-                <div style="height:7px; border-radius:4px; background:{{ colors.bgSoft }}; overflow:hidden;"><div style="width:82%; height:100%; background:#6366f1; border-radius:4px;"></div></div>
+                <div style="height:7px; border-radius:4px; background:{{ colors.bgSoft }}; overflow:hidden;"><div style="width:82%; height:100%; background:#7C3AED; border-radius:4px;"></div></div>
               </div>
               <div>
                 <div style="display:flex; justify-content:space-between; font-size:13px; color:{{ colors.textSoft }}; margin-bottom:5px;"><span>{{ t.dash.flow2 }}</span><span>65%</span></div>
-                <div style="height:7px; border-radius:4px; background:{{ colors.bgSoft }}; overflow:hidden;"><div style="width:65%; height:100%; background:#0891b2; border-radius:4px;"></div></div>
+                <div style="height:7px; border-radius:4px; background:{{ colors.bgSoft }}; overflow:hidden;"><div style="width:65%; height:100%; background:#2563EB; border-radius:4px;"></div></div>
               </div>
               <div>
                 <div style="display:flex; justify-content:space-between; font-size:13px; color:{{ colors.textSoft }}; margin-bottom:5px;"><span>{{ t.dash.flow3 }}</span><span>54%</span></div>
-                <div style="height:7px; border-radius:4px; background:{{ colors.bgSoft }}; overflow:hidden;"><div style="width:54%; height:100%; background:#7c3aed; border-radius:4px;"></div></div>
+                <div style="height:7px; border-radius:4px; background:{{ colors.bgSoft }}; overflow:hidden;"><div style="width:54%; height:100%; background:#7C3AED; border-radius:4px;"></div></div>
               </div>
               <div>
                 <div style="display:flex; justify-content:space-between; font-size:13px; color:{{ colors.textSoft }}; margin-bottom:5px;"><span>{{ t.dash.flow4 }}</span><span>40%</span></div>
@@ -426,17 +428,17 @@
 
       <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:22px;">
         <div style="background:{{ colors.card }}; border:1px solid {{ colors.border }}; border-radius:16px; padding:28px; box-shadow:{{ colors.shadow }};">
-          <span style="display:inline-block; background:{{ colors.indigoBg }}; color:#6366f1; font-size:12px; font-weight:700; padding:5px 11px; border-radius:8px; margin-bottom:16px;">{{ t.cases.c1tag }}</span>
+          <span style="display:inline-block; background:{{ colors.indigoBg }}; color:#7C3AED; font-size:12px; font-weight:700; padding:5px 11px; border-radius:8px; margin-bottom:16px;">{{ t.cases.c1tag }}</span>
           <h3 style="font-size:18px; font-weight:700; margin:0 0 10px; color:{{ colors.text }};">{{ t.cases.c1title }}</h3>
           <p style="font-size:14.5px; line-height:1.6; color:{{ colors.textSoft }}; margin:0;">{{ t.cases.c1desc }}</p>
         </div>
         <div style="background:{{ colors.card }}; border:1px solid {{ colors.border }}; border-radius:16px; padding:28px; box-shadow:{{ colors.shadow }};">
-          <span style="display:inline-block; background:{{ colors.tealBg }}; color:#0891b2; font-size:12px; font-weight:700; padding:5px 11px; border-radius:8px; margin-bottom:16px;">{{ t.cases.c2tag }}</span>
+          <span style="display:inline-block; background:{{ colors.tealBg }}; color:#2563EB; font-size:12px; font-weight:700; padding:5px 11px; border-radius:8px; margin-bottom:16px;">{{ t.cases.c2tag }}</span>
           <h3 style="font-size:18px; font-weight:700; margin:0 0 10px; color:{{ colors.text }};">{{ t.cases.c2title }}</h3>
           <p style="font-size:14.5px; line-height:1.6; color:{{ colors.textSoft }}; margin:0;">{{ t.cases.c2desc }}</p>
         </div>
         <div style="background:{{ colors.card }}; border:1px solid {{ colors.border }}; border-radius:16px; padding:28px; box-shadow:{{ colors.shadow }};">
-          <span style="display:inline-block; background:{{ colors.violetBg }}; color:#7c3aed; font-size:12px; font-weight:700; padding:5px 11px; border-radius:8px; margin-bottom:16px;">{{ t.cases.c3tag }}</span>
+          <span style="display:inline-block; background:{{ colors.violetBg }}; color:#7C3AED; font-size:12px; font-weight:700; padding:5px 11px; border-radius:8px; margin-bottom:16px;">{{ t.cases.c3tag }}</span>
           <h3 style="font-size:18px; font-weight:700; margin:0 0 10px; color:{{ colors.text }};">{{ t.cases.c3title }}</h3>
           <p style="font-size:14.5px; line-height:1.6; color:{{ colors.textSoft }}; margin:0;">{{ t.cases.c3desc }}</p>
         </div>
@@ -519,7 +521,7 @@
               </div>
             </sc-for>
           </div>
-          <a href="#contacto" style="text-align:center; background:{{ colors.bgSoft }}; color:{{ colors.text }}; text-decoration:none; font-weight:700; font-size:14.5px; padding:12px 18px; border-radius:10px; border:1.5px solid {{ colors.border }};" style-hover="border-color:#6366f1;">{{ t.pricing.plan1.cta }}</a>
+          <a href="#contacto" style="text-align:center; background:{{ colors.bgSoft }}; color:{{ colors.text }}; text-decoration:none; font-weight:700; font-size:14.5px; padding:12px 18px; border-radius:10px; border:1.5px solid {{ colors.border }};" style-hover="border-color:#7C3AED;">{{ t.pricing.plan1.cta }}</a>
         </div>
 
         <div style="background:{{ colors.card }}; border:1px solid {{ colors.border }}; border-radius:16px; padding:28px 24px; box-shadow:{{ colors.shadow }}; display:flex; flex-direction:column;">
@@ -533,12 +535,12 @@
           <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:24px; flex:1;">
             <sc-for list="{{ t.pricing.plan2.features }}" as="feat" hint-placeholder-count="6">
               <div style="display:flex; align-items:flex-start; gap:9px; font-size:13.5px; color:{{ colors.textSoft }};">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="flex-shrink:0; margin-top:3px;" aria-hidden="true"><path d="M4 12.5l5 5L20 6" stroke="#0891b2" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="flex-shrink:0; margin-top:3px;" aria-hidden="true"><path d="M4 12.5l5 5L20 6" stroke="#2563EB" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 <span>{{ feat }}</span>
               </div>
             </sc-for>
           </div>
-          <a href="#contacto" style="text-align:center; background:{{ colors.bgSoft }}; color:{{ colors.text }}; text-decoration:none; font-weight:700; font-size:14.5px; padding:12px 18px; border-radius:10px; border:1.5px solid {{ colors.border }};" style-hover="border-color:#0891b2;">{{ t.pricing.plan2.cta }}</a>
+          <a href="#contacto" style="text-align:center; background:{{ colors.bgSoft }}; color:{{ colors.text }}; text-decoration:none; font-weight:700; font-size:14.5px; padding:12px 18px; border-radius:10px; border:1.5px solid {{ colors.border }};" style-hover="border-color:#2563EB;">{{ t.pricing.plan2.cta }}</a>
         </div>
 
         <div style="position:relative; background:{{ colors.card }}; border:2px solid #059669; border-radius:16px; padding:32px 24px 28px; box-shadow:0 20px 40px -12px rgba(5,150,105,.28); display:flex; flex-direction:column;">
@@ -571,12 +573,12 @@
           <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:24px; flex:1;">
             <sc-for list="{{ t.pricing.plan4.features }}" as="feat" hint-placeholder-count="5">
               <div style="display:flex; align-items:flex-start; gap:9px; font-size:13.5px; color:{{ colors.textSoft }};">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="flex-shrink:0; margin-top:3px;" aria-hidden="true"><path d="M4 12.5l5 5L20 6" stroke="#7c3aed" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="flex-shrink:0; margin-top:3px;" aria-hidden="true"><path d="M4 12.5l5 5L20 6" stroke="#7C3AED" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 <span>{{ feat }}</span>
               </div>
             </sc-for>
           </div>
-          <a href="mailto:hola@xflowpro.com" style="text-align:center; background:{{ colors.bgSoft }}; color:{{ colors.text }}; text-decoration:none; font-weight:700; font-size:14.5px; padding:12px 18px; border-radius:10px; border:1.5px solid {{ colors.border }};" style-hover="border-color:#7c3aed;">{{ t.pricing.plan4.cta }}</a>
+          <a href="mailto:hola@xflowpro.com" style="text-align:center; background:{{ colors.bgSoft }}; color:{{ colors.text }}; text-decoration:none; font-weight:700; font-size:14.5px; padding:12px 18px; border-radius:10px; border:1.5px solid {{ colors.border }};" style-hover="border-color:#7C3AED;">{{ t.pricing.plan4.cta }}</a>
         </div>
       </div>
 
@@ -616,7 +618,7 @@
         <h2 style="font-size:clamp(28px,3.4vw,38px); font-weight:800; letter-spacing:-0.02em; margin:0 0 16px; color:{{ colors.text }}; text-wrap:pretty;">{{ t.cta.title }}</h2>
         <p style="font-size:16px; line-height:1.6; color:{{ colors.textSoft }}; margin:0 0 26px; text-wrap:pretty;">{{ t.cta.subtitle }}</p>
         <div style="font-size:14.5px; color:{{ colors.textSoft }};">
-          {{ t.cta.contactNote }} <a href="mailto:hola@xflowpro.com" style="color:#0891b2; font-weight:700; text-decoration:none;" style-hover="text-decoration:underline;">hola@xflowpro.com</a>
+          {{ t.cta.contactNote }} <a href="mailto:hola@xflowpro.com" style="color:#2563EB; font-weight:700; text-decoration:none;" style-hover="text-decoration:underline;">hola@xflowpro.com</a>
         </div>
       </div>
 
@@ -651,7 +653,7 @@
             <sc-if value="{{ hasSubmitError }}" hint-placeholder-val="{{ false }}">
               <div style="font-size:13.5px; color:#dc2626; background:{{ colors.redBg }}; border-radius:8px; padding:10px 12px;">{{ submitError }}</div>
             </sc-if>
-            <button type="submit" disabled="{{ submitting }}" style="margin-top:6px; background:#0891b2; color:#fff; border:none; font-weight:700; font-size:15px; padding:13px 20px; border-radius:10px; cursor:pointer; font-family:inherit; opacity:{{ submitBtnOpacity }}; transition:transform .15s ease, box-shadow .15s ease, background .15s ease;" style-hover="background:#0a7590; transform:translateY(-1px); box-shadow:0 6px 16px rgba(8,145,178,.28);">{{ submitLabel }}</button>
+            <button type="submit" disabled="{{ submitting }}" style="margin-top:6px; background:#2563EB; color:#fff; border:none; font-weight:700; font-size:15px; padding:13px 20px; border-radius:10px; cursor:pointer; font-family:inherit; opacity:{{ submitBtnOpacity }}; transition:transform .15s ease, box-shadow .15s ease, background .15s ease;" style-hover="background:#1D4ED8; transform:translateY(-1px); box-shadow:0 6px 16px rgba(37,99,235,.28);">{{ submitLabel }}</button>
           </form>
         </sc-if>
       </div>
@@ -665,7 +667,7 @@
         <div>
           <a href="#top" style="display:flex; align-items:center; gap:10px; text-decoration:none; margin-bottom:14px;">
             <img src="{{ logoIconSrc }}" alt="xFlowPRO" style="width:28px; height:auto;">
-            <span style="font-size:18px; font-weight:800; letter-spacing:-0.02em; color:{{ colors.text }};">xflow<span style="color:#7c3aed;">PRO</span></span>
+            <span style="font-size:18px; font-weight:800; letter-spacing:-0.02em; color:{{ colors.text }};">xflow<span style="color:#7C3AED;">PRO</span></span>
           </a>
           <p style="font-size:14px; color:{{ colors.textSoft }}; max-width:280px; line-height:1.55; margin:0;">{{ t.footer.tagline }}</p>
         </div>
@@ -1059,15 +1061,15 @@ class Component extends DCLogic {
       headerBg: 'rgba(15,23,42,.82)',
       heroGradient: 'linear-gradient(135deg,#1a1f3a 0%,#0f172a 55%)',
       shadow: '0 1px 3px rgba(0,0,0,.35), 0 10px 26px rgba(0,0,0,.35)',
-      indigoBg: 'rgba(99,102,241,.18)', tealBg: 'rgba(8,145,178,.2)', amberBg: 'rgba(217,119,6,.2)',
+      indigoBg: 'rgba(124,58,237,.18)', tealBg: 'rgba(37,99,235,.2)', amberBg: 'rgba(217,119,6,.2)',
       greenBg: 'rgba(5,150,105,.2)', violetBg: 'rgba(124,58,237,.2)', blueBg: 'rgba(30,64,175,.22)', redBg: 'rgba(220,38,38,.2)'
     } : {
       bg: '#f8fafc', bgAlt: '#ffffff', bgSoft: '#f1f5f9', card: '#ffffff',
       border: 'rgba(215,224,235,.9)', text: '#0f172a', textSoft: '#475569', textFaint: '#64748b',
       headerBg: 'rgba(248,250,252,.82)',
-      heroGradient: 'linear-gradient(135deg,#eef2ff 0%,#f8fafc 55%)',
+      heroGradient: 'linear-gradient(135deg,#eff6ff 0%,#f8fafc 55%)',
       shadow: '0 1px 3px rgba(15,23,42,.06), 0 8px 24px rgba(15,23,42,.06)',
-      indigoBg: '#eef2ff', tealBg: '#e0f2fe', amberBg: '#fef3c7',
+      indigoBg: '#ede9fe', tealBg: '#dbeafe', amberBg: '#fef3c7',
       greenBg: '#dcfce7', violetBg: '#ede9fe', blueBg: '#dbeafe', redBg: '#fee2e2'
     };
 
@@ -1082,9 +1084,9 @@ class Component extends DCLogic {
     return {
       isDark, isLight: !isDark, t, colors, faqItems,
       logoIconSrc: isDark ? 'uploads/logo_mini_w.png' : 'uploads/logo_mini.png',
-      esPillBg: lang === 'es' ? '#6366f1' : 'transparent',
+      esPillBg: lang === 'es' ? '#7C3AED' : 'transparent',
       esPillColor: lang === 'es' ? '#ffffff' : colors.textSoft,
-      enPillBg: lang === 'en' ? '#6366f1' : 'transparent',
+      enPillBg: lang === 'en' ? '#7C3AED' : 'transparent',
       enPillColor: lang === 'en' ? '#ffffff' : colors.textSoft,
       toggleTheme: this.toggleTheme,
       toggleLang: this.toggleLang,
