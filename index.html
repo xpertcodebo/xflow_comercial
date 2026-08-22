@@ -48,6 +48,7 @@
       <nav style="display:flex; align-items:center; gap:clamp(14px,2.4vw,28px); flex-wrap:wrap;">
         <a href="#producto" style="color:{{ colors.textSoft }}; text-decoration:none; font-weight:600; font-size:14.5px;" style-hover="color:{{ colors.text }};">{{ t.nav.producto }}</a>
         <a href="#funcionalidades" style="color:{{ colors.textSoft }}; text-decoration:none; font-weight:600; font-size:14.5px;" style-hover="color:{{ colors.text }};">{{ t.nav.funcionalidades }}</a>
+        <a href="#app" style="color:{{ colors.textSoft }}; text-decoration:none; font-weight:600; font-size:14.5px;" style-hover="color:{{ colors.text }};">{{ t.nav.app }}</a>
         <a href="#casos" style="color:{{ colors.textSoft }}; text-decoration:none; font-weight:600; font-size:14.5px;" style-hover="color:{{ colors.text }};">{{ t.nav.casos }}</a>
         <a href="#precios" style="color:{{ colors.textSoft }}; text-decoration:none; font-weight:600; font-size:14.5px;" style-hover="color:{{ colors.text }};">{{ t.nav.precios }}</a>
         <a href="#contacto" style="color:{{ colors.textSoft }}; text-decoration:none; font-weight:600; font-size:14.5px;" style-hover="color:{{ colors.text }};">{{ t.nav.contacto }}</a>
@@ -308,6 +309,45 @@
           <p style="font-size:14px; line-height:1.55; color:{{ colors.textSoft }}; margin:0;">{{ t.how.s4desc }}</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- APP MOVIL -->
+  <section id="app" data-reveal="true" style="padding:clamp(64px,8vw,110px) clamp(20px,6vw,40px); background:{{ colors.heroGradient }};">
+    <div style="max-width:1100px; margin:0 auto;">
+      <div style="max-width:660px; margin:0 auto 48px; text-align:center;">
+        <span style="display:inline-block; background:#0891b2; color:#fff; font-size:12px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; padding:6px 13px; border-radius:20px; margin-bottom:18px;">{{ t.app.badge }}</span>
+        <h2 style="font-size:clamp(28px,3.4vw,40px); font-weight:800; letter-spacing:-0.02em; margin:0 0 14px; color:{{ colors.text }}; text-wrap:pretty;">{{ t.app.title }}</h2>
+        <p style="font-size:16.5px; line-height:1.6; color:{{ colors.textSoft }}; margin:0; text-wrap:pretty;">{{ t.app.subtitle }}</p>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:22px; margin-bottom:34px;">
+        <div style="background:{{ colors.card }}; border:1px solid {{ colors.border }}; border-radius:16px; padding:28px; box-shadow:{{ colors.shadow }};">
+          <div style="width:42px; height:42px; border-radius:11px; background:{{ colors.tealBg }}; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M7 8v8"/><path d="M11 8v8"/><path d="M15 8v8"/></svg>
+          </div>
+          <h3 style="font-size:17.5px; font-weight:700; margin:0 0 9px; color:{{ colors.text }};">{{ t.app.a1title }}</h3>
+          <p style="font-size:14.5px; line-height:1.6; color:{{ colors.textSoft }}; margin:0;">{{ t.app.a1desc }}</p>
+        </div>
+
+        <div style="background:{{ colors.card }}; border:1px solid {{ colors.border }}; border-radius:16px; padding:28px; box-shadow:{{ colors.shadow }};">
+          <div style="width:42px; height:42px; border-radius:11px; background:{{ colors.indigoBg }}; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          </div>
+          <h3 style="font-size:17.5px; font-weight:700; margin:0 0 9px; color:{{ colors.text }};">{{ t.app.a2title }}</h3>
+          <p style="font-size:14.5px; line-height:1.6; color:{{ colors.textSoft }}; margin:0;">{{ t.app.a2desc }}</p>
+        </div>
+
+        <div style="background:{{ colors.card }}; border:1px solid {{ colors.border }}; border-radius:16px; padding:28px; box-shadow:{{ colors.shadow }};">
+          <div style="width:42px; height:42px; border-radius:11px; background:{{ colors.violetBg }}; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2.5"/><path d="M12 18h.01"/></svg>
+          </div>
+          <h3 style="font-size:17.5px; font-weight:700; margin:0 0 9px; color:{{ colors.text }};">{{ t.app.a3title }}</h3>
+          <p style="font-size:14.5px; line-height:1.6; color:{{ colors.textSoft }}; margin:0;">{{ t.app.a3desc }}</p>
+        </div>
+      </div>
+
+      <p style="text-align:center; font-size:14px; color:{{ colors.textSoft }}; margin:0;">{{ t.app.note }}</p>
     </div>
   </section>
 
@@ -690,15 +730,15 @@ class Component extends DCLogic {
 
   translations = {
     es: {
-      nav: { producto: 'Producto', funcionalidades: 'Funcionalidades', casos: 'Casos de uso', precios: 'Precios', contacto: 'Contacto', demo: 'Solicitar demo', acceder: 'Acceder' },
+      nav: { producto: 'Producto', funcionalidades: 'Funcionalidades', app: 'App móvil', casos: 'Casos de uso', precios: 'Precios', contacto: 'Contacto', demo: 'Solicitar demo', acceder: 'Acceder' },
       hero: {
-        eyebrow: 'Plataforma BPM low-code',
-        title: 'Automatiza y controla tus procesos de principio a fin, sin código',
-        subtitle: 'Diseña flujos visualmente en Flow Studio, ejecútalos en un motor real con historial completo, y mide todo con un dashboard de SLA. Simple para negocio, sólido para TI.',
+        eyebrow: 'Tu operación, bajo control',
+        title: 'Que ninguna tarea se pierda entre planillas, correos y WhatsApp',
+        subtitle: 'xFlowPRO ordena cómo trabaja tu equipo: cada pedido, aprobación o traspaso sigue su camino, con responsable y plazo. Y ves todo en tiempo real, desde la computadora o desde el celular.',
         ctaPrimary: 'Solicitar demo',
-        ctaSecondary: 'Ver funcionalidades',
-        proofNote: 'En producción hoy en operaciones de retail, aprobaciones e integraciones con ERP.',
-        mockupTag: 'Flow Studio', mockupPublish: 'Publicar',
+        ctaSecondary: 'Ver cómo funciona',
+        proofNote: 'Hoy en producción en una cadena de retail: cierre de caja, traspasos entre tiendas e inventario.',
+        mockupTag: 'Diseñador de procesos', mockupPublish: 'Publicar',
         lane1: 'Ventas', lane2: 'Operaciones', lane3: 'Finanzas',
         taskCardTitle: 'Aprobar cotización #4821', taskCardMeta: 'Asignada a M. Torres · vence en 3h', taskCardTag: 'En riesgo'
       },
@@ -708,68 +748,77 @@ class Component extends DCLogic {
         p1title: 'Procesos atrapados en Excel y WhatsApp', p1desc: 'Cada persona sigue el proceso a su manera, en archivos sueltos que nadie audita.',
         p2title: 'Cero visibilidad de dónde está cada caso', p2desc: 'Nadie sabe qué tarea está pendiente, quién la tiene, ni cuánto lleva esperando.',
         p3title: 'Tareas que se pierden entre correos', p3desc: 'Sin bandeja de tareas ni asignación clara, las excepciones se resuelven a los gritos.',
-        p4title: 'Sin SLA, sin alertas, sin datos', p4desc: 'Nadie mide el tiempo de ciclo hasta que el cliente se queja.'
+        p4title: 'Sin plazos, sin alertas, sin datos', p4desc: 'Nadie mide cuánto tarda cada cosa hasta que el cliente se queja.'
       },
       features: {
-        title: 'Todo lo que necesitas para operar procesos reales',
-        subtitle: 'Low-code para el negocio. API, conectores y trazabilidad para TI.',
-        f1title: 'Diseñador visual de flujos', f1desc: 'Editor drag-and-drop con carriles, tareas, gateways de decisión y conectores. Plantillas reutilizables y validación en vivo.',
-        f2title: 'Motor de ejecución con historial', f2desc: 'Cada proceso corre como una instancia real, con variables de contexto, ruteo condicional y trazabilidad completa.',
-        f3title: 'Bandeja de tareas y acciones', f3desc: 'Tomar, liberar, reasignar, escalar, suspender o reactivar cualquier tarea. Comentarios y agrupación incluidos.',
-        f4title: 'Dashboard de métricas y SLA', f4desc: 'Salud de SLA, cuellos de botella, tiempo de ciclo y carga por actor u oficina, con filtros por fecha y flujo.',
-        f5title: 'Jerarquías de actores y aprobaciones', f5desc: 'Relaciones tipadas —escala a, aprueba con, delega a, respaldo de— configurables por oficina, flujo o tarea.',
-        f6title: 'Conectores, API e integraciones', f6desc: 'Webhooks, scripts y conectores a SAP/ERP. Formularios dinámicos y extensibilidad real para tu equipo de TI.',
-        f7title: 'Mobile-first para equipos de campo', f7desc: 'Tarjetas de tareas optimizadas para mobile, pensadas para tienda, almacén y operación en terreno.',
-        f8title: 'Modo oscuro + multi-idioma', f8desc: 'Experiencia moderna con paleta de comandos (⌘K), modo oscuro completo e i18n de fábrica.'
+        title: 'Todo lo que necesitas para que la operación no dependa de la memoria de nadie',
+        subtitle: 'Fácil para el equipo que lo usa. Sólido para el que lo administra.',
+        f1title: 'Diseña tu proceso arrastrando', f1desc: 'Armas el circuito como lo dibujarías en una pizarra: quién hace qué, en qué orden, y qué pasa si algo se aprueba o se rechaza.',
+        f2title: 'Historial completo de cada caso', f2desc: 'Quién hizo qué, cuándo y con qué datos. Si alguien pregunta qué pasó con un pedido, la respuesta está ahí.',
+        f3title: 'Bandeja de tareas para tu equipo', f3desc: 'Cada persona ve lo suyo y puede tomar, delegar, escalar o poner en pausa una tarea. Sin perseguir a nadie.',
+        f4title: 'Tablero de control', f4desc: 'Qué se está atrasando, dónde se traba la operación y cuánto tarda cada proceso. Con filtros por fecha, área y sucursal.',
+        f5title: 'Aprobaciones que respetan tu organigrama', f5desc: 'Quién aprueba a quién, quién lo reemplaza cuando no está, y a quién se escala si nadie responde a tiempo.',
+        f6title: 'Se conecta con lo que ya usas', f6desc: 'Se integra con tu ERP o SAP para que los datos entren y salgan solos, sin exportar e importar planillas.',
+        f7title: 'App móvil para el equipo de campo', f7desc: 'Tienda, almacén y ruta trabajan desde el celular: escaneo de códigos con la cámara y avisos al instante cuando les cae una tarea.',
+        f8title: 'Cómoda de usar todo el día', f8desc: 'Modo oscuro, español e inglés, y búsqueda rápida para llegar a cualquier lugar en dos teclas.'
+      },
+      app: {
+        badge: 'Nuevo',
+        title: 'Tu operación también en el bolsillo',
+        subtitle: 'La app de xFlowPRO pone las tareas donde realmente pasa el trabajo: en el piso de tienda, en el almacén y en la calle.',
+        a1title: 'Escaneo con la cámara', a1desc: 'Lee códigos de barras y SKU directo con el celular, sin comprar lectores.',
+        a2title: 'Avisos al instante', a2desc: 'Cuando a alguien le cae una tarea, le llega la notificación al teléfono. Y si le caen varias juntas, recibe un solo aviso, no cinco seguidos.',
+        a3title: 'Pensada para trabajar de pie', a3desc: 'Pantallas simples y botones grandes: entrar, resolver la tarea y seguir.',
+        note: 'Disponible para Android. Se instala directo, sin pasar por la tienda de aplicaciones.'
       },
       how: {
         title: 'Cómo funciona',
         subtitle: 'De la idea a un proceso corriendo, en cuatro pasos.',
-        s1title: 'Diseña tu proceso visualmente', s1desc: 'Arma el flujo en Flow Studio: actores, tareas, condiciones y conectores, sin escribir código.',
-        s2title: 'Publica y ejecuta instancias reales', s2desc: 'Cada caso corre en el motor con su propio historial, variables y estado.',
-        s3title: 'Tu equipo trabaja desde la bandeja', s3desc: 'Web para oficina, tarjetas mobile para campo. Tomar, delegar, escalar.',
-        s4title: 'Mide y mejora con el dashboard', s4desc: 'SLA, cuellos de botella y tiempo de ciclo, para ajustar el proceso con datos reales.'
+        s1title: 'Dibuja tu proceso', s1desc: 'Defines quién hace qué, en qué orden y con qué condiciones. Sin escribir una línea de código.',
+        s2title: 'Publica y empieza a operar', s2desc: 'Cada caso arranca su recorrido con su responsable, su plazo y su historial.',
+        s3title: 'Tu equipo trabaja desde donde esté', s3desc: 'En la oficina desde la web; en tienda o en ruta, desde la app del celular.',
+        s4title: 'Mide y ajusta', s4desc: 'Ves dónde se atrasa la operación y corriges el proceso con datos, no con intuición.'
       },
       dash: {
-        title: 'Un dashboard que habla el idioma de operaciones',
-        subtitle: 'SLA, cuellos de botella y carga de trabajo, en un solo lugar.',
-        kOnTime: 'A tiempo', kAtRisk: 'En riesgo', kOverdue: 'Vencido', kCycle: 'Ciclo prom.', days: 'días',
+        title: 'Un tablero que habla el idioma de operaciones',
+        subtitle: 'Atrasos, cuellos de botella y carga de trabajo, en un solo lugar.',
+        kOnTime: 'A tiempo', kAtRisk: 'En riesgo', kOverdue: 'Vencido', kCycle: 'Demora prom.', days: 'días',
         loadTitle: 'Carga por flujo',
         flow1: 'Aprobación de compras', flow2: 'Onboarding de empleados', flow3: 'Traspaso entre tiendas', flow4: 'Cotizaciones',
-        cycleLabel: 'Tiempo de ciclo promedio', cycleDelta: '-18% vs. mes anterior'
+        cycleLabel: 'Tiempo promedio de un caso', cycleDelta: '-18% vs. mes anterior'
       },
       cases: {
         title: 'Casos de uso reales',
-        subtitle: 'Procesos con pasos, actores y reglas — el terreno donde xFlowPRO se usa todos los días.',
-        c1tag: 'Retail y operaciones', c1title: 'Arqueo de caja, traspasos e inventario', c1desc: 'Automatiza el cierre de caja, los traspasos entre tiendas y la gestión de SKU con escáner de código de barras, con historial completo por sucursal.',
-        c2tag: 'Aprobaciones', c2title: 'Cotizaciones y aprobaciones internas', c2desc: 'Rutea cotizaciones y solicitudes por reglas y jerarquías reales, con escalamiento automático si nadie responde a tiempo.',
-        c3tag: 'Integraciones', c3title: 'Conectado a tu ERP o SAP', c3desc: 'Sincroniza datos con sistemas externos vía API y conectores personalizados, sin depender de exportar e importar planillas.'
+        subtitle: 'Procesos con pasos, responsables y reglas — el terreno donde xFlowPRO se usa todos los días.',
+        c1tag: 'Retail y operaciones', c1title: 'Arqueo de caja, traspasos e inventario', c1desc: 'El cierre de caja, los traspasos entre tiendas y el conteo de inventario, con escaneo de códigos desde el celular e historial completo por sucursal.',
+        c2tag: 'Aprobaciones', c2title: 'Cotizaciones y aprobaciones internas', c2desc: 'Cada solicitud llega a quien corresponde según tus reglas, y se escala sola si nadie responde a tiempo.',
+        c3tag: 'Integraciones', c3title: 'Conectado a tu ERP o SAP', c3desc: 'Los datos se sincronizan con tus sistemas actuales, sin depender de que alguien exporte e importe planillas.'
       },
       why: {
         title: 'Por qué xFlowPRO',
-        subtitle: 'Toda la potencia de un BPM enterprise, sin la fricción de uno tradicional.',
+        subtitle: 'La potencia de un sistema grande, sin la complicación de uno grande.',
         colFeature: 'Aspecto', colTraditional: 'Plataforma tradicional', colXflow: 'xFlowPRO',
         r1feature: 'Tiempo de implementación', r1trad: 'Meses de consultoría', r1xflow: 'Semanas, con plantillas listas',
-        r2feature: 'Curva de aprendizaje', r2trad: 'Requiere programar o certificarse', r2xflow: 'Low-code, piensa como tu proceso',
-        r3feature: 'Ejecución real', r3trad: 'Diagramas que no se ejecutan', r3xflow: 'Lo que diseñás corre de verdad',
-        r4feature: 'Soporte mobile', r4trad: 'Adaptado a último momento', r4xflow: 'Nativo, con tarjetas para campo',
+        r2feature: 'Curva de aprendizaje', r2trad: 'Requiere programar o certificarse', r2xflow: 'Se aprende usándolo, sin certificaciones',
+        r3feature: 'Ejecución real', r3trad: 'Diagramas que no se ejecutan', r3xflow: 'Lo que diseñas corre de verdad',
+        r4feature: 'Soporte mobile', r4trad: 'Adaptado a último momento', r4xflow: 'App propia para tienda y almacén',
         r5feature: 'Idioma', r5trad: 'Documentación solo en inglés', r5xflow: 'Pensado y soportado en español'
       },
       pricing: {
         title: 'Precios pensados para crecer con tu operación, no en tu contra',
         subtitle: 'Pagas por lo que realmente usas: usuarios y oficinas, no cobros ocultos por asiento. Empieza chico, escala cuando lo necesites.',
-        hook: 'En plataformas BPM tradicionales, pagar por usuario en un equipo de 50-100 personas cuesta entre US$600 y US$2,500 al mes. Con xFlowPRO, esa misma escala cuesta desde US$417/mes.',
+        hook: 'En sistemas parecidos, pagar por usuario en un equipo de 50-100 personas cuesta entre US$600 y US$2,500 al mes. Con xFlowPRO, esa misma escala cuesta desde US$417/mes.',
         founderText: 'Programa Fundador: súmate ahora y congela este precio de lanzamiento para siempre, además de acceso directo al equipo fundador del producto. Cupos limitados.',
         plan1: {
           name: 'Arranque', price: 'US$1,000', period: '/año', priceNote: '~US$83/mes',
           tagline: 'Para el primer proceso que quieres dejar de perseguir por WhatsApp o Excel.',
-          features: ['Hasta 10 usuarios', '1 oficina/sucursal', 'Hasta 3 flujos activos', 'Bandeja de tareas web y mobile', 'Soporte por email'],
+          features: ['Hasta 10 usuarios', '1 oficina/sucursal', 'Hasta 3 flujos activos', 'Acceso web y app móvil', 'Soporte por email'],
           cta: 'Empezar ahora'
         },
         plan2: {
           name: 'Crecimiento', price: 'US$2,500', period: '/año', priceNote: '~US$208/mes',
           tagline: 'Para equipos que ya coordinan varias áreas u oficinas.',
-          features: ['Hasta 40 usuarios', '3 oficinas/sucursales', 'Hasta 6 flujos activos', 'Dashboard de métricas BPM completo (SLA, cuellos de botella, carga)', 'Jerarquías de actores y aprobaciones', 'Conectores/API personalizados', 'Soporte prioritario'],
+          features: ['Hasta 40 usuarios', '3 oficinas/sucursales', 'Hasta 6 flujos activos', 'Tablero de control completo (atrasos, cuellos de botella, carga de trabajo)', 'Aprobaciones y reemplazos según tu organigrama', 'Integraciones con tus sistemas', 'Soporte prioritario'],
           cta: 'Solicitar demo'
         },
         plan3: {
@@ -781,7 +830,7 @@ class Component extends DCLogic {
         plan4: {
           name: 'Empresarial', price: 'Hablemos', priceNote: 'Para operaciones de más de 75 usuarios',
           tagline: 'Conversemos tu caso, sin compromiso.',
-          features: ['Usuarios, oficinas y flujos a medida', 'SSO', 'SLA de soporte', 'Integraciones a medida (SAP/ERP y sistemas propios)', 'Account manager dedicado'],
+          features: ['Usuarios, oficinas y flujos a medida', 'Inicio de sesión con tu cuenta corporativa (SSO)', 'Tiempos de respuesta garantizados', 'Integraciones a medida con tus sistemas (SAP/ERP y propios)', 'Account manager dedicado'],
           cta: 'Agendar sesión'
         },
         disclaimer: 'Precios anuales en USD, sin sorpresas ni costos ocultos por implementación. Tu plan crece contigo, cuando lo necesites.',
@@ -791,7 +840,7 @@ class Component extends DCLogic {
           { q: '¿Qué pasa si supero los usuarios u oficinas de mi plan?', a: 'Subes de plan en cualquier momento, sin perder configuración, flujos ni historial.' },
           { q: '¿Hay descuento por pago anual?', a: 'Los precios ya están pensados en modalidad anual; consúltanos por facturación mensual o en tu moneda local.' },
           { q: '¿Puedo probarlo antes de contratar?', a: 'Sí, agenda una demo y evaluamos juntos un piloto guiado sobre tu propio proceso.' },
-          { q: '¿Por qué no cobran por usuario como otras plataformas BPM?', a: 'Porque penaliza a operaciones con muchos usuarios de campo (tiendas, bodegas, sucursales). Preferimos que pagues por el tamaño real de tu operación, no por cada persona que necesita usar el sistema.' }
+          { q: '¿Por qué no cobran por usuario como otros sistemas?', a: 'Porque penaliza a operaciones con muchos usuarios de campo (tiendas, bodegas, sucursales). Preferimos que pagues por el tamaño real de tu operación, no por cada persona que necesita usar el sistema.' }
         ]
       },
       cta: {
@@ -802,22 +851,22 @@ class Component extends DCLogic {
         submit: 'Solicitar demo', success: '¡Listo! Te vamos a contactar en menos de 24 horas.'
       },
       footer: {
-        tagline: 'El motor de procesos que tu operación necesitaba.',
+        tagline: 'El orden que tu operación estaba necesitando.',
         col1title: 'Producto', col2title: 'Compañía', col3title: 'Contacto',
         col2link1: 'Sobre nosotros', col2link2: 'Contacto',
         copyright: '© 2026 xFlowPRO. Todos los derechos reservados.'
       }
     },
     en: {
-      nav: { producto: 'Product', funcionalidades: 'Features', casos: 'Use cases', precios: 'Pricing', contacto: 'Contact', demo: 'Request demo', acceder: 'Sign in' },
+      nav: { producto: 'Product', funcionalidades: 'Features', app: 'Mobile app', casos: 'Use cases', precios: 'Pricing', contacto: 'Contact', demo: 'Request demo', acceder: 'Sign in' },
       hero: {
-        eyebrow: 'Low-code BPM platform',
-        title: 'Automate and control your processes end to end, no code required',
-        subtitle: 'Design flows visually in Flow Studio, run them on a real execution engine with full history, and measure everything with an SLA dashboard. Simple for business, solid for IT.',
+        eyebrow: 'Your operation, under control',
+        title: 'Stop losing work between spreadsheets, email and WhatsApp',
+        subtitle: 'xFlowPRO organizes how your team works: every order, approval or transfer follows its path, with an owner and a deadline. And you see it all in real time — from your desk or from your phone.',
         ctaPrimary: 'Request demo',
-        ctaSecondary: 'See features',
-        proofNote: 'Already in production across retail operations, approvals and ERP integrations.',
-        mockupTag: 'Flow Studio', mockupPublish: 'Publish',
+        ctaSecondary: 'See how it works',
+        proofNote: 'In production today at a retail chain: cash reconciliation, store transfers and inventory.',
+        mockupTag: 'Process designer', mockupPublish: 'Publish',
         lane1: 'Sales', lane2: 'Operations', lane3: 'Finance',
         taskCardTitle: 'Approve quote #4821', taskCardMeta: 'Assigned to M. Torres · due in 3h', taskCardTag: 'At risk'
       },
@@ -827,68 +876,77 @@ class Component extends DCLogic {
         p1title: 'Processes trapped in Excel and WhatsApp', p1desc: 'Everyone follows the process their own way, in loose files nobody audits.',
         p2title: 'Zero visibility into where each case stands', p2desc: 'Nobody knows what task is pending, who owns it, or how long it has been waiting.',
         p3title: 'Tasks that get lost in email', p3desc: 'With no task inbox or clear ownership, exceptions get resolved by shouting.',
-        p4title: 'No SLAs, no alerts, no data', p4desc: 'Nobody measures cycle time until the customer complains.'
+        p4title: 'No deadlines, no alerts, no data', p4desc: 'Nobody measures how long anything takes until the customer complains.'
       },
       features: {
-        title: 'Everything you need to run real processes',
-        subtitle: 'Low-code for the business. API, connectors and traceability for IT.',
-        f1title: 'Visual flow designer', f1desc: 'Drag-and-drop editor with lanes, tasks, decision gateways and connectors. Reusable templates and live validation.',
-        f2title: 'Execution engine with full history', f2desc: 'Every process runs as a real instance, with context variables, conditional routing and full traceability.',
-        f3title: 'Task inbox and actions', f3desc: 'Claim, release, reassign, escalate, suspend or reactivate any task. Comments and grouping included.',
-        f4title: 'Metrics and SLA dashboard', f4desc: 'SLA health, bottlenecks, cycle time and workload by actor or office, with date and flow filters.',
-        f5title: 'Actor hierarchies and approvals', f5desc: 'Typed relationships —escalates to, approves with, delegates to, backs up— configurable per office, flow or task.',
-        f6title: 'Connectors, API and integrations', f6desc: 'Webhooks, scripts and SAP/ERP connectors. Dynamic forms and real extensibility for your IT team.',
-        f7title: 'Mobile-first for field teams', f7desc: 'Task cards optimized for mobile, built for stores, warehouses and field operations.',
-        f8title: 'Dark mode + multi-language', f8desc: 'Modern experience with a command palette (⌘K), full dark mode and i18n out of the box.'
+        title: 'Everything you need so the operation stops depending on someone remembering',
+        subtitle: 'Easy for the team that uses it. Solid for the one who runs it.',
+        f1title: 'Design your process by dragging', f1desc: 'Lay out the circuit the way you would on a whiteboard: who does what, in what order, and what happens when something is approved or rejected.',
+        f2title: 'A full history of every case', f2desc: 'Who did what, when and with what data. If someone asks what happened with an order, the answer is right there.',
+        f3title: 'A task inbox for your team', f3desc: 'Everyone sees their own work and can claim, delegate, escalate or pause a task. No chasing anyone.',
+        f4title: 'Control dashboard', f4desc: 'What is running late, where the operation gets stuck and how long each process takes. Filter by date, area and branch.',
+        f5title: 'Approvals that follow your org chart', f5desc: 'Who approves whom, who covers for them when they are away, and who it escalates to if nobody answers in time.',
+        f6title: 'Connects to what you already use', f6desc: 'Integrates with your ERP or SAP so data flows both ways, without exporting and importing spreadsheets.',
+        f7title: 'Mobile app for field teams', f7desc: 'Stores, warehouses and routes work from the phone: barcode scanning with the camera and instant alerts when a task lands on them.',
+        f8title: 'Comfortable all day long', f8desc: 'Dark mode, Spanish and English, and quick search to get anywhere in two keystrokes.'
+      },
+      app: {
+        badge: 'New',
+        title: 'Your operation in your pocket, too',
+        subtitle: 'The xFlowPRO app puts tasks where the work actually happens: on the shop floor, in the warehouse and out on the road.',
+        a1title: 'Scan with the camera', a1desc: 'Read barcodes and SKUs straight from the phone, no scanner hardware to buy.',
+        a2title: 'Instant alerts', a2desc: 'When a task lands on someone, the notification reaches their phone. And if several land at once, they get one alert, not five in a row.',
+        a3title: 'Built for working on your feet', a3desc: 'Simple screens and big buttons: open it, finish the task, move on.',
+        note: 'Available for Android. Installs directly, no app store required.'
       },
       how: {
         title: 'How it works',
         subtitle: 'From idea to a running process, in four steps.',
-        s1title: 'Design your process visually', s1desc: 'Build the flow in Flow Studio: actors, tasks, conditions and connectors, without writing code.',
-        s2title: 'Publish and run real instances', s2desc: 'Every case runs on the engine with its own history, variables and state.',
-        s3title: 'Your team works from the inbox', s3desc: 'Web for the office, mobile cards for the field. Claim, delegate, escalate.',
-        s4title: 'Measure and improve with the dashboard', s4desc: 'SLA, bottlenecks and cycle time, so you can tune the process with real data.'
+        s1title: 'Draw your process', s1desc: 'Define who does what, in what order and under what conditions. Without writing a single line of code.',
+        s2title: 'Publish and start operating', s2desc: 'Every case starts its journey with its owner, its deadline and its history.',
+        s3title: 'Your team works from anywhere', s3desc: 'At the office from the web; in the store or on the road, from the phone app.',
+        s4title: 'Measure and adjust', s4desc: 'See where the operation falls behind and fix the process with data, not hunches.'
       },
       dash: {
         title: 'A dashboard that speaks operations',
-        subtitle: 'SLA, bottlenecks and workload, all in one place.',
-        kOnTime: 'On time', kAtRisk: 'At risk', kOverdue: 'Overdue', kCycle: 'Avg. cycle', days: 'days',
+        subtitle: 'Delays, bottlenecks and workload, all in one place.',
+        kOnTime: 'On time', kAtRisk: 'At risk', kOverdue: 'Overdue', kCycle: 'Avg. time', days: 'days',
         loadTitle: 'Load by flow',
         flow1: 'Purchase approval', flow2: 'Employee onboarding', flow3: 'Store-to-store transfer', flow4: 'Quotes',
-        cycleLabel: 'Average cycle time', cycleDelta: '-18% vs. last month'
+        cycleLabel: 'Average time per case', cycleDelta: '-18% vs. last month'
       },
       cases: {
         title: 'Real use cases',
-        subtitle: 'Processes with steps, actors and rules — where xFlowPRO gets used every day.',
-        c1tag: 'Retail & operations', c1title: 'Cash counts, transfers and inventory', c1desc: 'Automate cash register closing, store-to-store transfers and SKU management with barcode scanning, with full history per branch.',
-        c2tag: 'Approvals', c2title: 'Quotes and internal approvals', c2desc: 'Route quotes and requests through real rules and hierarchies, with automatic escalation if nobody responds in time.',
-        c3tag: 'Integrations', c3title: 'Connected to your ERP or SAP', c3desc: 'Sync data with external systems via API and custom connectors, without relying on exporting and importing spreadsheets.'
+        subtitle: 'Processes with steps, owners and rules — where xFlowPRO gets used every day.',
+        c1tag: 'Retail & operations', c1title: 'Cash counts, transfers and inventory', c1desc: 'Cash register closing, store-to-store transfers and inventory counts, with barcode scanning from the phone and full history per branch.',
+        c2tag: 'Approvals', c2title: 'Quotes and internal approvals', c2desc: 'Every request reaches the right person according to your rules, and escalates on its own if nobody responds in time.',
+        c3tag: 'Integrations', c3title: 'Connected to your ERP or SAP', c3desc: 'Data syncs with the systems you already run, without relying on someone exporting and importing spreadsheets.'
       },
       why: {
         title: 'Why xFlowPRO',
-        subtitle: 'All the power of an enterprise BPM, without the friction of a traditional one.',
+        subtitle: 'The power of a big system, without the hassle of a big system.',
         colFeature: 'Aspect', colTraditional: 'Traditional platform', colXflow: 'xFlowPRO',
         r1feature: 'Implementation time', r1trad: 'Months of consulting', r1xflow: 'Weeks, with ready templates',
-        r2feature: 'Learning curve', r2trad: 'Requires coding or certification', r2xflow: 'Low-code, thinks like your process',
+        r2feature: 'Learning curve', r2trad: 'Requires coding or certification', r2xflow: 'Learned by using it, no certification',
         r3feature: 'Real execution', r3trad: 'Diagrams that never run', r3xflow: 'What you design actually runs',
-        r4feature: 'Mobile support', r4trad: 'Bolted on as an afterthought', r4xflow: 'Native, with field-ready cards',
+        r4feature: 'Mobile support', r4trad: 'Bolted on as an afterthought', r4xflow: 'Its own app for store and warehouse',
         r5feature: 'Language', r5trad: 'Docs only in English', r5xflow: 'Built and supported in Spanish'
       },
       pricing: {
         title: 'Pricing that grows with your operation, not against it',
         subtitle: 'You pay for what you actually use: users and offices, not hidden per-seat fees. Start small, scale when you need to.',
-        hook: 'On traditional BPM platforms, paying per user for a team of 50-100 people costs between US$600 and US$2,500 a month. With xFlowPRO, that same scale costs from US$417/mo.',
+        hook: 'On comparable systems, paying per user for a team of 50-100 people costs between US$600 and US$2,500 a month. With xFlowPRO, that same scale costs from US$417/mo.',
         founderText: 'Founding Partner Program: join now, lock in launch pricing for life, and get direct access to the founding team. Limited spots.',
         plan1: {
           name: 'Starter', price: 'US$1,000', period: '/yr', priceNote: '~US$83/mo',
           tagline: 'For the first process you want to stop chasing through WhatsApp or Excel.',
-          features: ['Up to 10 users', '1 branch/office', 'Up to 3 active flows', 'Web and mobile task inbox', 'Email support'],
+          features: ['Up to 10 users', '1 branch/office', 'Up to 3 active flows', 'Web access and mobile app', 'Email support'],
           cta: 'Get started now'
         },
         plan2: {
           name: 'Growth', price: 'US$2,500', period: '/yr', priceNote: '~US$208/mo',
           tagline: 'For teams already coordinating several areas or offices.',
-          features: ['Up to 40 users', '3 branches/offices', 'Up to 6 active flows', 'Full BPM metrics dashboard (SLA, bottlenecks, workload)', 'Actor hierarchies and approvals', 'Custom connectors/API', 'Priority support'],
+          features: ['Up to 40 users', '3 branches/offices', 'Up to 6 active flows', 'Full control dashboard (delays, bottlenecks, workload)', 'Approvals and stand-ins that follow your org chart', 'Integrations with your systems', 'Priority support'],
           cta: 'Request demo'
         },
         plan3: {
@@ -900,7 +958,7 @@ class Component extends DCLogic {
         plan4: {
           name: 'Enterprise', price: "Let's talk", priceNote: 'For operations with 75+ users',
           tagline: 'Let\u2019s talk about your case, no strings attached.',
-          features: ['Custom users, offices and flows', 'SSO', 'Support SLA', 'Custom integrations (SAP/ERP and in-house systems)', 'Dedicated account manager'],
+          features: ['Custom users, offices and flows', 'Sign in with your corporate account (SSO)', 'Guaranteed response times', 'Custom integrations (SAP/ERP and in-house systems)', 'Dedicated account manager'],
           cta: 'Book a session'
         },
         disclaimer: 'Annual pricing in USD, no surprises and no hidden implementation costs. Your plan grows with you, whenever you need it.',
@@ -910,7 +968,7 @@ class Component extends DCLogic {
           { q: 'What happens if I exceed my plan\u2019s users or offices?', a: 'You upgrade at any time, without losing configuration, flows or history.' },
           { q: 'Is there a discount for annual billing?', a: 'Prices are already set up on an annual basis; ask us about monthly billing or billing in your local currency.' },
           { q: 'Can I try it before committing?', a: 'Yes, book a demo and we\u2019ll run a guided pilot on your own process together.' },
-          { q: 'Why don\u2019t you charge per user like other BPM platforms?', a: 'Because it penalizes operations with lots of field users (stores, warehouses, branches). We\u2019d rather you pay for the real size of your operation, not for every person who needs to use the system.' }
+          { q: 'Why don\u2019t you charge per user like other systems?', a: 'Because it penalizes operations with lots of field users (stores, warehouses, branches). We\u2019d rather you pay for the real size of your operation, not for every person who needs to use the system.' }
         ]
       },
       cta: {
@@ -921,7 +979,7 @@ class Component extends DCLogic {
         submit: 'Request demo', success: 'Done! We\u2019ll reach out within 24 hours.'
       },
       footer: {
-        tagline: 'The process engine your operation needed.',
+        tagline: 'The order your operation was missing.',
         col1title: 'Product', col2title: 'Company', col3title: 'Contact',
         col2link1: 'About us', col2link2: 'Contact',
         copyright: '© 2026 xFlowPRO. All rights reserved.'
