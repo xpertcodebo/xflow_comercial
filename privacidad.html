@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Política de Privacidad — xFlowPRO</title>
+<meta name="description" content="Qué datos recolecta la app móvil de xFlowPRO, para qué se usan y cómo pedir que se eliminen.">
+<link rel="icon" href="uploads/logo_black.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background: #f8fafc; color: #0f172a;
+  }
+  h1, h2, h3 { font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif; }
+  * { box-sizing: border-box; }
+  ::selection { background: #7C3AED; color: #fff; }
+
+  :root {
+    --bg: #f8fafc; --card: #ffffff; --border: rgba(215,224,235,.9);
+    --text: #0f172a; --textSoft: #475569; --textFaint: #64748b;
+    --accent: #2563EB; --accent2: #7C3AED;
+    --pillBg: #eff6ff; --pillText: #1d4ed8;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f172a; --card: #1e293b; --border: #2a3a50;
+      --text: #f1f5f9; --textSoft: #94a3b8; --textFaint: #64748b;
+      --pillBg: rgba(37,99,235,.18); --pillText: #93c5fd;
+    }
+  }
+
+  body { background: var(--bg); color: var(--text); }
+
+  header {
+    position: sticky; top: 0; z-index: 10;
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    border-bottom: 1px solid var(--border);
+  }
+  .header-inner {
+    max-width: 760px; margin: 0 auto; padding: 14px clamp(20px,4vw,40px);
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .brand img { width: 28px; height: auto; display: block; }
+  .brand span { font-size: 18px; font-weight: 800; letter-spacing: -0.02em; color: var(--text); }
+  .brand b { color: var(--accent2); font-weight: 800; }
+  header a.back { color: var(--textSoft); text-decoration: none; font-weight: 600; font-size: 14px; }
+  header a.back:hover { color: var(--text); }
+
+  main { max-width: 760px; margin: 0 auto; padding: clamp(32px,6vw,56px) clamp(20px,4vw,40px) 80px; }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--pillBg); color: var(--pillText);
+    font-size: 13px; font-weight: 700; letter-spacing: .02em;
+    padding: 5px 12px; border-radius: 100px; margin-bottom: 16px;
+  }
+  h1 { font-size: clamp(28px,4vw,38px); line-height: 1.15; margin: 0 0 10px; letter-spacing: -0.02em; }
+  .updated { color: var(--textFaint); font-size: 14px; margin: 0 0 40px; }
+
+  section { margin-bottom: 36px; }
+  h2 {
+    font-size: 19px; margin: 0 0 12px; display: flex; align-items: center; gap: 10px;
+  }
+  h2 .num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 26px; height: 26px; border-radius: 8px;
+    background: var(--pillBg); color: var(--pillText);
+    font-size: 13px; font-weight: 800; flex-shrink: 0;
+  }
+  p, li { color: var(--textSoft); font-size: 15.5px; line-height: 1.65; }
+  p { margin: 0 0 14px; }
+  ul { margin: 0 0 14px; padding-left: 22px; }
+  li { margin-bottom: 8px; }
+  strong { color: var(--text); }
+
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+    padding: 20px 22px; margin-bottom: 14px;
+  }
+  .datatable { width: 100%; border-collapse: collapse; margin: 0 0 6px; }
+  .datatable th, .datatable td {
+    text-align: left; padding: 10px 8px; font-size: 14.5px;
+    border-bottom: 1px solid var(--border); vertical-align: top;
+  }
+  .datatable th { color: var(--textFaint); font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: .02em; }
+  .datatable tr:last-child td { border-bottom: none; }
+  .datatable td:first-child { color: var(--text); font-weight: 600; white-space: nowrap; }
+
+  .no-list { list-style: none; padding-left: 0; }
+  .no-list li { display: flex; gap: 10px; align-items: flex-start; }
+  .no-list li::before { content: "✕"; color: #dc2626; font-weight: 800; flex-shrink: 0; margin-top: 2px; }
+
+  a.link { color: var(--accent); text-decoration: none; font-weight: 600; }
+  a.link:hover { text-decoration: underline; }
+
+  .contact-card {
+    background: linear-gradient(135deg, var(--pillBg), transparent);
+    border: 1px solid var(--border); border-radius: 16px;
+    padding: 24px; text-align: center;
+  }
+  .contact-card p { margin: 0 0 12px; }
+  .contact-card a.btn {
+    display: inline-block; background: var(--accent); color: #fff !important;
+    text-decoration: none; font-weight: 700; font-size: 14.5px;
+    padding: 11px 22px; border-radius: 10px;
+  }
+
+  footer {
+    max-width: 760px; margin: 0 auto; padding: 24px clamp(20px,4vw,40px) 48px;
+    color: var(--textFaint); font-size: 13px; text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="brand">
+      <img src="uploads/logo_mini.png" alt="xFlowPRO">
+      <span>xflow<b>PRO</b></span>
+    </a>
+    <a href="index.html" class="back">← Volver al sitio</a>
+  </div>
+</header>
+
+<main>
+  <span class="eyebrow">🔒 Privacidad</span>
+  <h1>Política de Privacidad</h1>
+  <p class="updated">Última actualización: 30 de agosto de 2026 · Aplica a la app móvil de xFlowPRO (Android)</p>
+
+  <section>
+    <p>Esta página explica qué datos recolecta la <strong>app móvil de xFlowPRO</strong> (disponible como
+    <strong>xFlow</strong> y <strong>xFlow TEST</strong> en Android), para qué se usan, con quién se comparten
+    y cómo pedir que se eliminen. Si usás xFlowPRO desde el navegador en vez de la app, esta misma política
+    aplica igual — la app y la web comparten el mismo sistema por detrás.</p>
+    <p>xFlowPRO es un producto de <strong>XpertCode</strong>. Si tenés dudas, escribinos a
+    <a class="link" href="mailto:hola@xflowpro.com">hola@xflowpro.com</a>.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">1</span>Qué datos recolectamos</h2>
+    <div class="card">
+      <table class="datatable">
+        <tr><th>Dato</th><th>Para qué</th></tr>
+        <tr>
+          <td>Usuario, email, organización</td>
+          <td>Iniciar sesión y saber a qué empresa/oficina pertenecés dentro del sistema.</td>
+        </tr>
+        <tr>
+          <td>Contraseña</td>
+          <td>Se guarda <strong>cifrada</strong> (bcrypt) — nunca en texto plano, ni siquiera nuestro propio equipo puede leerla.</td>
+        </tr>
+        <tr>
+          <td>Token de sesión</td>
+          <td>Mantenerte logueado entre pantallas, sin pedirte la contraseña en cada paso.</td>
+        </tr>
+        <tr>
+          <td>Token de notificaciones push</td>
+          <td>Un identificador de tu instalación de la app (no de vos como persona) para poder avisarte cuando te asignan una tarea. Se da de baja automáticamente al cerrar sesión.</td>
+        </tr>
+        <tr>
+          <td>Cámara</td>
+          <td>Solo si escaneás un código de barras dentro de una tarea. Lee el código en el momento — <strong>no se guardan fotos ni video</strong>, y no se activa a menos que vos abras el escáner a propósito.</td>
+        </tr>
+        <tr>
+          <td>Datos del trabajo diario (pedidos, tareas, comentarios)</td>
+          <td>Es la información de negocio que tu organización carga y gestiona dentro del sistema (ej. pedidos, seguimientos). Le pertenece a tu organización, no a XpertCode — nosotros la almacenamos y procesamos como parte del servicio.</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="num">2</span>Qué NO hacemos</h2>
+    <ul class="no-list">
+      <li>No mostramos publicidad ni usamos redes de anuncios.</li>
+      <li>No vendemos datos a terceros, bajo ninguna circunstancia.</li>
+      <li>No usamos herramientas de analítica ni rastreo de comportamiento dentro de la app (no hay Google Analytics, Meta Pixel, ni nada similar).</li>
+      <li>No accedemos a tus contactos, ubicación, mensajes ni archivos del teléfono — la app solo pide permiso de cámara (para el escáner) y de notificaciones.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="num">3</span>Con quién se comparte</h2>
+    <p>Solo con proveedores técnicos necesarios para que el servicio funcione:</p>
+    <ul>
+      <li><strong>Firebase Cloud Messaging (Google)</strong> — entrega las notificaciones push a tu teléfono. Google procesa el token de tu instalación según su propia
+        <a class="link" href="https://policies.google.com/privacy" target="_blank" rel="noopener">política de privacidad</a>.</li>
+      <li><strong>Amazon Web Services</strong> — aloja los servidores y la base de datos donde vive el sistema.</li>
+    </ul>
+    <p>Ninguno de los dos usa tus datos para publicidad ni los comparte con nadie más — los usan únicamente para prestarnos ese servicio técnico puntual.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">4</span>Cuánto tiempo se guardan</h2>
+    <p>Mientras tu cuenta esté activa en tu organización. Si tu organización te da de baja, o si pedís la eliminación de tu cuenta (ver abajo), tus datos personales
+    (usuario, email, token de sesión, token de push) se eliminan. Los datos de negocio (pedidos, tareas) pueden conservarse según las políticas internas de tu
+    organización, ya que le pertenecen a ella, no a vos individualmente.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">5</span>Tus derechos</h2>
+    <p>Podés pedir en cualquier momento:</p>
+    <ul>
+      <li>Acceder a los datos que tenemos sobre vos.</li>
+      <li>Corregir datos incorrectos.</li>
+      <li>Eliminar tu cuenta y tus datos personales.</li>
+    </ul>
+    <p>Para cualquiera de estos tres, escribinos a
+      <a class="link" href="mailto:hola@xflowpro.com">hola@xflowpro.com</a> o pedíselo al administrador de tu organización dentro de xFlowPRO — ambos caminos llegan al mismo resultado.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">6</span>Menores de edad</h2>
+    <p>xFlowPRO es una herramienta de trabajo para equipos y empresas. No está dirigida a menores de edad ni recolecta a sabiendas datos de menores de 13 años.</p>
+  </section>
+
+  <section>
+    <h2><span class="num">7</span>Cambios a esta política</h2>
+    <p>Si actualizamos esta página, vamos a cambiar la fecha de "Última actualización" arriba. Para cambios importantes en cómo tratamos tus datos, te lo vamos a avisar dentro de la app.</p>
+  </section>
+
+  <div class="contact-card">
+    <p><strong>¿Preguntas sobre tus datos?</strong><br>Estamos para ayudarte.</p>
+    <a class="btn" href="mailto:hola@xflowpro.com">Escribir a hola@xflowpro.com</a>
+  </div>
+</main>
+
+<footer>
+  © 2026 XpertCode — xFlowPRO
+</footer>
+
+</body>
+</html>
