@@ -408,17 +408,17 @@
     to   { opacity: 1; transform: none; filter: none; }
   }
   html.js .hero-anim { opacity: 0; will-change: opacity, transform, filter; }
-  .hero-anim.play { animation: heroIn 1.15s var(--ease) forwards; }
-  .hero-delay-1.play { animation-delay: .06s; }
-  .hero-delay-2.play { animation-delay: .14s; }
-  .hero-delay-3.play { animation-delay: .22s; }
-  .hero-delay-4.play { animation-delay: .30s; }
-  .hero-delay-5.play { animation-delay: .40s; }
+  .hero-anim.play { animation: heroIn .85s var(--ease) forwards; }
+  .hero-delay-1.play { animation-delay: .04s; }
+  .hero-delay-2.play { animation-delay: .09s; }
+  .hero-delay-3.play { animation-delay: .14s; }
+  .hero-delay-4.play { animation-delay: .19s; }
+  .hero-delay-5.play { animation-delay: .26s; }
 
   /* Scroll reveals — staggered grids and section blocks */
   html.js [data-reveal], html.js .reveal {
-    opacity: 0; transform: translateY(44px) scale(.985); filter: blur(7px);
-    transition: opacity 1.05s var(--ease), transform 1.05s var(--ease), filter 1.05s var(--ease);
+    opacity: 0; transform: translateY(28px) scale(.99); filter: blur(4px);
+    transition: opacity .6s var(--ease), transform .6s var(--ease), filter .6s var(--ease);
     transition-delay: var(--reveal-delay, 0ms);
     will-change: opacity, transform, filter;
   }
@@ -428,7 +428,7 @@
   .bar { height: 7px; border-radius: 4px; background: var(--bgSoft); overflow: hidden; }
   .bar-fill {
     width: 0; height: 100%; border-radius: 4px;
-    transition: width 1.5s var(--ease) .15s;
+    transition: width .9s var(--ease) .1s;
   }
 
   /* Card sheen sweep (Apple-style specular pass) */
@@ -466,12 +466,18 @@
 
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
+    /* Keep motion legible but calm: short cross-fades instead of zero-duration cuts.
+       Slides, blur and parallax are dropped per-selector below, not globally nuked. */
     *, *::before, *::after {
-      animation-duration: .01ms !important;
+      animation-duration: .001s !important;
       animation-iteration-count: 1 !important;
-      transition-duration: .01ms !important;
+      scroll-behavior: auto !important;
     }
-    html.js [data-reveal], html.js .reveal, html.js .hero-anim { opacity: 1; transform: none; filter: none; }
+    html.js [data-reveal], html.js .reveal, html.js .hero-anim {
+      transform: none !important; filter: none !important;
+      transition: opacity .25s ease !important;
+    }
+    .mock[data-parallax] { transform: none !important; }
   }
 
   @media (prefers-reduced-transparency: reduce) {
@@ -480,6 +486,13 @@
 </style>
 </head>
 <body>
+<script>
+  // Apply saved theme before first paint to avoid a light-mode flash
+  (function () {
+    const match = document.cookie.match(/(?:^|; )theme=(dark|light)/);
+    if (match && match[1] === 'dark') document.body.classList.add('dark');
+  })();
+</script>
 
 <div id="top" class="main-container" style="min-height:100vh; background:var(--bg); color:var(--text);">
 
@@ -1091,11 +1104,18 @@
   const logoImg = document.getElementById('logoImg');
   const footerLogoImg = document.getElementById('footerLogoImg');
 
+  // Reflect the theme applied pre-paint (see inline script in <head>) onto the logos
+  if (document.body.classList.contains('dark')) {
+    logoImg.src = 'uploads/logo_mini_w.png';
+    footerLogoImg.src = 'uploads/logo_mini_w.png';
+  }
+
   themeBtn.addEventListener('click', () => {
     document.body.classList.toggle('dark');
     const isDark = document.body.classList.contains('dark');
     logoImg.src = isDark ? 'uploads/logo_mini_w.png' : 'uploads/logo_mini.png';
     footerLogoImg.src = isDark ? 'uploads/logo_mini_w.png' : 'uploads/logo_mini.png';
+    document.cookie = `theme=${isDark ? 'dark' : 'light'}; max-age=${60 * 60 * 24 * 365}; path=/; SameSite=Lax`;
   });
 
   // Header shadow on scroll (Apple-style elevation)
@@ -1176,7 +1196,7 @@
   document.querySelectorAll('[data-stagger]').forEach(grid => {
     [...grid.children].forEach((el, i) => {
       el.classList.add('reveal');
-      el.style.setProperty('--reveal-delay', `${Math.min(i * 90, 630)}ms`);
+      el.style.setProperty('--reveal-delay', `${Math.min(i * 55, 330)}ms`);
     });
   });
 
