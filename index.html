@@ -7,63 +7,491 @@
 <meta name="description" content="xFlowPRO ordena cómo trabaja tu equipo: cada pedido, aprobación o traspaso sigue su camino, con responsable y plazo. Y ves todo en tiempo real, desde la computadora o desde el celular.">
 <link rel="icon" href="uploads/logo_black.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  html { scroll-behavior: smooth; }
-  body { margin: 0; font-family: 'Inter', system-ui, -apple-system, sans-serif; -webkit-font-smoothing: antialiased; background: #f8fafc; color: #0f172a; transition: background .25s ease, color .25s ease; }
-  body.dark { background: #0f172a; color: #f1f5f9;  }
-  h1, h2, h3 { font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif; }
-  * { box-sizing: border-box; }
-  ::selection { background: #7C3AED; color: #fff; }
-  @keyframes floatY { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-  @keyframes pulseDot { 0%, 100% { box-shadow: 0 0 0 0 rgba(5,150,105,.45); } 50% { box-shadow: 0 0 0 6px rgba(5,150,105,0); } }
-  @keyframes pulseDotAmber { 0%, 100% { box-shadow: 0 0 0 0 rgba(217,119,6,.45); } 50% { box-shadow: 0 0 0 6px rgba(217,119,6,0); } }
-  @keyframes fadeInUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
-  [data-reveal] { opacity: 0; }
-  [data-reveal].is-visible { animation: fadeInUp .7s cubic-bezier(.16,.8,.3,1) forwards; }
-  
-  /* Theme variables */
+  /* ==========================================================================
+     xFlowPRO — Apple design pass
+     Type, materials, spacing and motion following Apple's design language.
+     ========================================================================== */
+
   :root {
-    --bg: #f8fafc; --bgAlt: #ffffff; --bgSoft: #f1f5f9; --card: #ffffff;
-    --border: rgba(215,224,235,.9); --text: #0f172a; --textSoft: #475569; --textFaint: #64748b;
-    --headerBg: rgba(248,250,252,.82);
-    --heroGradient: linear-gradient(135deg,#eff6ff 0%,#f8fafc 55%);
-    --shadow: 0 1px 3px rgba(15,23,42,.06), 0 8px 24px rgba(15,23,42,.06);
-    --indigoBg: #ede9fe; --tealBg: #dbeafe; --amberBg: #fef3c7;
-    --greenBg: #dcfce7; --violetBg: #ede9fe; --blueBg: #dbeafe; --redBg: #fee2e2;
-  }
-  body.dark {
-    --bg: #0f172a; --bgAlt: #131f2e; --bgSoft: #16233a; --card: #1e293b;
-    --border: #2a3a50; --text: #f1f5f9; --textSoft: #94a3b8; --textFaint: #64748b;
-    --headerBg: rgba(15,23,42,.82);
-    --heroGradient: linear-gradient(135deg,#1a1f3a 0%,#0f172a 55%);
-    --shadow: 0 1px 3px rgba(0,0,0,.35), 0 10px 26px rgba(0,0,0,.35);
-    --indigoBg: rgba(124,58,237,.18); --tealBg: rgba(37,99,235,.2); --amberBg: rgba(217,119,6,.2);
-    --greenBg: rgba(5,150,105,.2); --violetBg: rgba(124,58,237,.2); --blueBg: rgba(30,64,175,.22); --redBg: rgba(220,38,38,.2);
+    --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Inter, system-ui, sans-serif;
+    --font-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", Inter, system-ui, sans-serif;
+
+    --bg: #f5f6f8;
+    --bgAlt: #ffffff;
+    --bgSoft: #eef0f4;
+    --card: #ffffff;
+    --border: rgba(15, 23, 42, .08);
+    --borderStrong: rgba(15, 23, 42, .12);
+    --text: #0b1220;
+    --textSoft: #4b5568;
+    --textFaint: #8791a3;
+    --headerBg: rgba(248, 250, 252, .78);
+    --scrim: rgba(15, 23, 42, .32);
+
+    --accent: #2563EB;
+    --accentDeep: #1D4ED8;
+    --brand: #7C3AED;
+    --ok: #059669;
+    --warn: #d97706;
+    --danger: #dc2626;
+
+    --shadow-sm: 0 1px 2px rgba(15, 23, 42, .05), 0 4px 16px rgba(15, 23, 42, .04);
+    --shadow-md: 0 2px 4px rgba(15, 23, 42, .04), 0 16px 40px -16px rgba(15, 23, 42, .14);
+    --shadow-lg: 0 40px 80px -20px rgba(15, 23, 42, .22), 0 12px 28px -12px rgba(15, 23, 42, .14);
+
+    --radius-sm: 10px;
+    --radius-md: 16px;
+    --radius-lg: 22px;
+    --radius-pill: 999px;
+
+    --ease: cubic-bezier(.22, 1, .36, 1);
+    --ease-spring: cubic-bezier(.34, 1.56, .64, 1);
   }
 
-  .main-container { background: var(--bg); color: var(--text); min-height: 100vh; }
-  header { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); background: var(--headerBg); border-bottom: 1px solid var(--border); }
-  .header-inner { max-width: 1280px; margin: 0 auto; padding: 14px clamp(20px,4vw,40px); display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-  nav a { color: var(--textSoft); text-decoration: none; font-weight: 600; font-size: 14.5px; transition: color .2s; }
+  body.dark {
+    --bg: #0a0f1a;
+    --bgAlt: #0e1420;
+    --bgSoft: #131b2b;
+    --card: #131b2b;
+    --border: rgba(255, 255, 255, .08);
+    --borderStrong: rgba(255, 255, 255, .14);
+    --text: #f1f5f9;
+    --textSoft: #9aa6b8;
+    --textFaint: #6b778c;
+    --headerBg: rgba(10, 15, 26, .72);
+    --scrim: rgba(0, 0, 0, .5);
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, .3), 0 4px 16px rgba(0, 0, 0, .25);
+    --shadow-md: 0 2px 4px rgba(0, 0, 0, .35), 0 18px 44px -16px rgba(0, 0, 0, .5);
+    --shadow-lg: 0 40px 80px -20px rgba(0, 0, 0, .55), 0 12px 28px -12px rgba(0, 0, 0, .4);
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--text);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    transition: background .4s var(--ease), color .4s var(--ease);
+  }
+
+  h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 800; line-height: 1.06; letter-spacing: -0.022em; margin: 0; color: var(--text); }
+
+  ::selection { background: var(--brand); color: #fff; }
+
+  a { color: inherit; }
+
+  img { max-width: 100%; }
+
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+  /* --------------------------------------------------------------------------
+     Material helpers
+     -------------------------------------------------------------------------- */
+  .glass {
+    background: var(--headerBg);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: transform .45s var(--ease), box-shadow .45s var(--ease), border-color .45s var(--ease), background .45s var(--ease);
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--borderStrong); }
+  .card:active { transform: translateY(-1px) scale(.988); }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(124, 58, 237, .1); color: var(--brand);
+    padding: 7px 14px; border-radius: var(--radius-pill);
+    font-size: 13px; font-weight: 700; letter-spacing: .01em;
+  }
+  body.dark .eyebrow { background: rgba(124, 58, 237, .22); }
+
+  /* --------------------------------------------------------------------------
+     Buttons
+     -------------------------------------------------------------------------- */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    font-family: var(--font-body); font-weight: 700; font-size: 15px;
+    padding: 13px 24px; border-radius: 13px;
+    text-decoration: none; white-space: nowrap; cursor: pointer; border: none;
+    transition: transform .18s var(--ease), box-shadow .3s var(--ease), background .2s var(--ease), filter .2s var(--ease), border-color .2s var(--ease);
+    will-change: transform;
+  }
+  .btn-press:active { transform: scale(.965); }
+
+  .btn-primary {
+    background: var(--accent); color: #fff;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, .12), 0 10px 24px -8px rgba(37, 99, 235, .5);
+  }
+  .btn-primary:hover { background: var(--accentDeep); box-shadow: 0 1px 2px rgba(15, 23, 42, .12), 0 14px 30px -8px rgba(37, 99, 235, .55); }
+
+  .btn-secondary {
+    background: transparent; color: var(--text);
+    border: 1.5px solid var(--borderStrong);
+  }
+  .btn-secondary:hover { background: var(--bgSoft); border-color: var(--textFaint); }
+
+  .btn-ghost {
+    background: var(--bgSoft); color: var(--text); border: 1.5px solid var(--border);
+  }
+  .btn-ghost:hover { background: var(--bg); border-color: var(--borderStrong); }
+
+  .btn-success { background: var(--ok); color: #fff; box-shadow: 0 10px 24px -8px rgba(5, 150, 105, .5); }
+  .btn-success:hover { filter: brightness(1.08); }
+
+  /* --------------------------------------------------------------------------
+     Header
+     -------------------------------------------------------------------------- */
+  header {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--headerBg);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid transparent;
+    transition: border-color .4s var(--ease), box-shadow .4s var(--ease), background .4s var(--ease);
+  }
+  header.scrolled { box-shadow: 0 1px 0 rgba(15, 23, 42, .03), 0 12px 40px -18px rgba(15, 23, 42, .18); border-bottom-color: var(--border); }
+
+  .header-inner {
+    max-width: 1280px; margin: 0 auto; padding: 14px clamp(20px, 4vw, 40px);
+    display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  }
+
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .brand-logo { width: 30px; height: auto; display: block; border-radius: 7px; }
+  .brand-name { font-size: 19px; font-weight: 800; letter-spacing: -0.02em; color: var(--text); font-family: var(--font-display); }
+  .brand-name em { font-style: normal; color: var(--brand); }
+
+  nav { display: flex; align-items: center; gap: clamp(14px, 2.4vw, 28px); flex-wrap: wrap; }
+  nav a {
+    color: var(--textSoft); text-decoration: none; font-weight: 600; font-size: 14.5px;
+    position: relative; transition: color .25s var(--ease);
+  }
+  nav a::after {
+    content: ""; position: absolute; left: 0; bottom: -5px; height: 2px; width: 100%;
+    background: var(--accent); border-radius: 2px;
+    transform: scaleX(0); transform-origin: center; transition: transform .35s var(--ease);
+  }
   nav a:hover { color: var(--text); }
-  .btn-primary { background: #2563EB; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 14px; padding: 10px 18px; border-radius: 10px; white-space: nowrap; transition: background .15s; }
-  .btn-primary:hover { background: #1D4ED8; }
+  nav a:hover::after { transform: scaleX(1); }
+
+  .header-actions { display: flex; align-items: center; gap: 10px; }
+
+  .theme-toggle {
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 1px solid var(--border); background: var(--bgSoft); color: var(--text);
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: transform .18s var(--ease), background .3s var(--ease), border-color .3s var(--ease);
+  }
+  .theme-toggle:hover { background: var(--bg); }
+  .theme-toggle:active { transform: scale(.92); }
+
+  /* --------------------------------------------------------------------------
+     Sections & rhythm
+     -------------------------------------------------------------------------- */
+  .section { padding: clamp(72px, 9vw, 128px) clamp(20px, 6vw, 40px); }
+  .section-tight { padding: clamp(56px, 7vw, 96px) clamp(20px, 6vw, 40px); }
+  .alt { background: var(--bgAlt); }
+
+  .container { max-width: 1200px; margin: 0 auto; }
+  .container-wide { max-width: 1280px; margin: 0 auto; }
+
+  .section-head { max-width: 680px; margin: 0 auto clamp(40px, 5vw, 60px); text-align: center; }
+  .section-head p { font-size: 16.5px; color: var(--textSoft); margin: 14px 0 0; text-wrap: pretty; }
+
+  h2.display { font-size: clamp(30px, 3.8vw, 46px); letter-spacing: -0.024em; line-height: 1.05; text-wrap: pretty; }
+  h3.card-title { font-size: 17.5px; font-weight: 700; letter-spacing: -0.012em; line-height: 1.25; }
+
+  .grid { display: grid; gap: 22px; }
+  .grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+  .grid-3 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .grid-4 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+
+  .card-pad { padding: 28px; }
+
+  .icon-tile {
+    width: 44px; height: 44px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center; margin-bottom: 16px;
+  }
+  .card-sub { font-size: 14.5px; line-height: 1.6; color: var(--textSoft); margin: 8px 0 0; }
+
+  .pill-tag {
+    display: inline-block; padding: 5px 12px; border-radius: 8px;
+    font-size: 12px; font-weight: 700; margin-bottom: 16px;
+  }
+
+  /* --------------------------------------------------------------------------
+     Hero
+     -------------------------------------------------------------------------- */
+  .hero {
+    position: relative; overflow: hidden;
+    background:
+      radial-gradient(1100px 520px at 78% -12%, rgba(37, 99, 235, .10), transparent 60%),
+      radial-gradient(900px 460px at 8% 18%, rgba(124, 58, 237, .08), transparent 58%),
+      var(--bg);
+  }
+  .hero-inner {
+    max-width: 1280px; margin: 0 auto;
+    display: flex; align-items: center; gap: clamp(32px, 5vw, 64px); flex-wrap: wrap;
+  }
+
+  .hero-copy { flex: 1 1 460px; min-width: 300px; }
+  .hero h1 { font-size: clamp(38px, 5vw, 60px); letter-spacing: -0.028em; line-height: 1.02; margin: 22px 0; }
+
+  .hero-lead {
+    font-size: clamp(16px, 1.7vw, 19px); line-height: 1.6; color: var(--textSoft);
+    margin: 0 0 30px; max-width: 540px; text-wrap: pretty;
+  }
+
+  .hero-cta { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 26px; }
+  .hero-proof { display: flex; align-items: center; gap: 10px; color: var(--textFaint); font-size: 13.5px; }
+
+  .pulse-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ok); }
+  body:not(.dark) .pulse-dot { animation: pulseDot 2s infinite; }
+
+  .hero-visual { flex: 1 1 440px; min-width: 300px; position: relative; }
+  .mock {
+    position: relative; background: #0f1526; border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg); overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, .08); line-height: 0;
+  }
+  .mock video { display: block; width: 100%; height: auto; border-radius: var(--radius-lg); }
+
+  /* --------------------------------------------------------------------------
+     Steps
+     -------------------------------------------------------------------------- */
+  .step-num {
+    width: 46px; height: 46px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 17px; color: #fff; margin-bottom: 16px;
+    box-shadow: 0 6px 16px -4px rgba(15, 23, 42, .3);
+  }
+
+  /* --------------------------------------------------------------------------
+     Comparison table
+     -------------------------------------------------------------------------- */
+  .compare {
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg);
+    overflow: hidden; box-shadow: var(--shadow-sm);
+  }
+  .compare-row {
+    display: grid; grid-template-columns: 1.3fr 1fr 1fr;
+    padding: 17px clamp(16px, 3vw, 26px); align-items: center;
+  }
+  .compare-row + .compare-row { border-top: 1px solid var(--border); }
+  .compare-head { background: var(--bgSoft); font-size: 12.5px; font-weight: 700; color: var(--textFaint); text-transform: uppercase; letter-spacing: .03em; }
+  .compare-aspect { font-size: 14.5px; font-weight: 600; color: var(--text); }
+  .compare-traditional { font-size: 13.5px; color: var(--textFaint); }
+  .compare-win { display: flex; align-items: center; gap: 7px; font-size: 13.5px; font-weight: 600; color: var(--ok); }
+
+  /* --------------------------------------------------------------------------
+     Pricing
+     -------------------------------------------------------------------------- */
+  .price-card { display: flex; flex-direction: column; padding: 30px 26px; }
+  .price-name { font-size: 18px; font-weight: 800; letter-spacing: -0.012em; }
+  .price-amount { font-size: 28px; font-weight: 800; letter-spacing: -0.02em; margin-top: 4px; }
+  .price-suffix { font-size: 13.5px; font-weight: 600; color: var(--textSoft); margin-left: 6px; }
+  .price-note { font-size: 12.5px; color: var(--textFaint); margin-top: 2px; }
+  .price-italic { font-size: 13.5px; color: var(--textSoft); line-height: 1.5; font-style: italic; margin: 14px 0 20px; }
+  .price-features { display: flex; flex-direction: column; gap: 11px; margin: 0 0 26px; flex: 1; }
+  .price-feature { display: flex; align-items: flex-start; gap: 9px; font-size: 13.5px; color: var(--textSoft); }
+  .check { flex-shrink: 0; margin-top: 3px; }
+
+  .card-featured {
+    position: relative; border: 2px solid var(--ok);
+    box-shadow: 0 24px 48px -16px rgba(5, 150, 105, .3);
+  }
+  .card-featured:hover { transform: translateY(-3px); box-shadow: 0 30px 56px -16px rgba(5, 150, 105, .34); }
+  .card-featured .btn-success { margin-top: auto; }
+
+  .ribbon {
+    position: absolute; top: -13px; left: 24px; background: var(--ok); color: #fff;
+    font-size: 12px; font-weight: 700; padding: 5px 12px; border-radius: var(--radius-pill);
+    letter-spacing: .02em;
+  }
+
+  .banner-callout {
+    background: rgba(124, 58, 237, .09); border: 1px solid rgba(124, 58, 237, .16);
+    border-radius: var(--radius-md); padding: 26px 30px; text-align: center; max-width: 900px; margin: 0 auto 44px;
+  }
+  body.dark .banner-callout { background: rgba(124, 58, 237, .16); }
+  .banner-callout p { font-size: clamp(16px, 2vw, 19px); font-weight: 700; line-height: 1.5; color: #4338ca; margin: 0; text-wrap: pretty; }
+  body.dark .banner-callout p { color: #c7baf0; }
+
+  .proof-note {
+    display: flex; align-items: flex-start; gap: 14px;
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-md);
+    padding: 22px 26px; box-shadow: var(--shadow-sm); max-width: 820px; margin: 36px auto 0;
+  }
+  .proof-note .check { color: var(--ok); margin-top: 1px; }
+
+  /* --------------------------------------------------------------------------
+     FAQ
+     -------------------------------------------------------------------------- */
+  .faq-item { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; transition: border-color .3s var(--ease); }
+  .faq-item.open { border-color: var(--borderStrong); }
+  .faq-btn {
+    width: 100%; text-align: left; background: none; border: none; padding: 17px 20px;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    cursor: pointer; font-family: var(--font-body);
+  }
+  .faq-btn span { font-size: 15px; font-weight: 600; color: var(--text); }
+  .faq-chevron { flex-shrink: 0; transition: transform .35s var(--ease-spring); }
+  .faq-content {
+    max-height: 0; overflow: hidden; padding: 0 20px;
+    font-size: 14px; line-height: 1.6; color: var(--textSoft);
+    transition: max-height .45s var(--ease), padding .45s var(--ease);
+  }
+  .faq-item.open .faq-chevron { transform: rotate(180deg); }
+  .faq-item.open .faq-content { max-height: 400px; padding: 0 20px 18px; }
+
+  /* --------------------------------------------------------------------------
+     Contact form
+     -------------------------------------------------------------------------- */
+  .form-card {
+    background: var(--bgAlt); border: 1px solid var(--border); border-radius: var(--radius-lg);
+    padding: clamp(24px, 3vw, 34px); box-shadow: var(--shadow-lg);
+    display: flex; flex-direction: column; gap: 15px;
+  }
+  .field label { display: block; font-size: 13px; font-weight: 600; color: var(--textSoft); margin-bottom: 6px; }
+  .field input, .field textarea {
+    width: 100%; padding: 12px 14px; border-radius: 11px;
+    border: 1px solid var(--borderStrong); background: var(--card); color: var(--text);
+    font-size: 14.5px; font-family: inherit;
+    transition: border-color .25s var(--ease), box-shadow .25s var(--ease), background .3s var(--ease);
+  }
+  .field input:focus, .field textarea:focus {
+    outline: none; border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, .18);
+  }
+
+  /* --------------------------------------------------------------------------
+     Footer
+     -------------------------------------------------------------------------- */
+  footer { background: var(--bgAlt); border-top: 1px solid var(--border); padding: clamp(48px, 6vw, 72px) clamp(20px, 6vw, 40px) 32px; }
+  .footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 32px; margin-bottom: 40px; }
+  .footer-col-title { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 14px; }
+  .footer-links { display: flex; flex-direction: column; gap: 10px; }
+  .footer-links a, .footer-copy { font-size: 14px; color: var(--textSoft); text-decoration: none; transition: color .2s var(--ease); }
+  .footer-links a:hover { color: var(--text); }
+  .footer-bottom {
+    border-top: 1px solid var(--border); padding-top: 22px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+  .footer-bottom span, .footer-bottom a { font-size: 13px; color: var(--textFaint); }
+
+  /* --------------------------------------------------------------------------
+     Motion
+     -------------------------------------------------------------------------- */
+  @keyframes floatY { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  @keyframes pulseDot { 0%, 100% { box-shadow: 0 0 0 0 rgba(5, 150, 105, .45); } 50% { box-shadow: 0 0 0 6px rgba(5, 150, 105, 0); } }
+
+  /* Hero entrance — staggered cascade, starts once the demo video is ready */
+  @keyframes heroIn {
+    from { opacity: 0; transform: translateY(52px) scale(.98); filter: blur(8px); }
+    to   { opacity: 1; transform: none; filter: none; }
+  }
+  html.js .hero-anim { opacity: 0; will-change: opacity, transform, filter; }
+  .hero-anim.play { animation: heroIn 1.15s var(--ease) forwards; }
+  .hero-delay-1.play { animation-delay: .06s; }
+  .hero-delay-2.play { animation-delay: .14s; }
+  .hero-delay-3.play { animation-delay: .22s; }
+  .hero-delay-4.play { animation-delay: .30s; }
+  .hero-delay-5.play { animation-delay: .40s; }
+
+  /* Scroll reveals — staggered grids and section blocks */
+  html.js [data-reveal], html.js .reveal {
+    opacity: 0; transform: translateY(44px) scale(.985); filter: blur(7px);
+    transition: opacity 1.05s var(--ease), transform 1.05s var(--ease), filter 1.05s var(--ease);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform, filter;
+  }
+  html.js [data-reveal].is-visible, html.js .reveal.is-visible { opacity: 1; transform: none; filter: none; }
+
+  /* Progress bars */
+  .bar { height: 7px; border-radius: 4px; background: var(--bgSoft); overflow: hidden; }
+  .bar-fill {
+    width: 0; height: 100%; border-radius: 4px;
+    transition: width 1.5s var(--ease) .15s;
+  }
+
+  /* Card sheen sweep (Apple-style specular pass) */
+  .card:not(.card-featured) { position: relative; overflow: hidden; }
+  .card:not(.card-featured)::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, .28) 50%, transparent 70%);
+    transform: translateX(-130%); transition: transform .9s var(--ease);
+  }
+  .card:not(.card-featured):hover::before { transform: translateX(130%); }
+  body.dark .card:not(.card-featured)::before { background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, .07) 50%, transparent 70%); }
+
+  /* Button shine sweep */
+  .btn-primary, .btn-success { position: relative; overflow: hidden; }
+  .btn-primary::after, .btn-success::after {
+    content: ""; position: absolute; top: 0; bottom: 0; left: -60%; width: 40%;
+    transform: skewX(-20deg);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .4), transparent);
+    transition: left .65s var(--ease);
+    pointer-events: none;
+  }
+  .btn-primary:hover::after, .btn-success:hover::after { left: 130%; }
+
+  /* --------------------------------------------------------------------------
+     Responsive & accessibility
+     -------------------------------------------------------------------------- */
+  @media (max-width: 860px) {
+    .compare-row { grid-template-columns: 1fr; gap: 6px; }
+    .compare-head { display: none; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 520px) {
+    .footer-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: .01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: .01ms !important;
+    }
+    html.js [data-reveal], html.js .reveal, html.js .hero-anim { opacity: 1; transform: none; filter: none; }
+  }
+
+  @media (prefers-reduced-transparency: reduce) {
+    header { background: var(--bgAlt); backdrop-filter: none; -webkit-backdrop-filter: none; }
+  }
 </style>
 </head>
 <body>
 
-<div id="top" class="main-container">
+<div id="top" class="main-container" style="min-height:100vh; background:var(--bg); color:var(--text);">
 
   <!-- HEADER -->
-  <header>
+  <header id="siteHeader">
     <div class="header-inner">
-      <a href="#top" style="display:flex; align-items:center; gap:10px; text-decoration:none;">
-        <img id="logoImg" src="uploads/logo_mini.png" alt="xFlowPRO" style="width:30px; height:auto; display:block;">
-        <span style="font-size:19px; font-weight:800; letter-spacing:-0.02em; color:var(--text);">xflow<span style="color:#7C3AED;">PRO</span></span>
+      <a href="#top" class="brand">
+        <img id="logoImg" src="uploads/logo_mini.png" alt="xFlowPRO" class="brand-logo">
+        <span class="brand-name">xflow<em>PRO</em></span>
       </a>
 
-      <nav style="display:flex; align-items:center; gap:clamp(14px,2.4vw,28px); flex-wrap:wrap;">
+      <nav>
         <a href="#producto">Producto</a>
         <a href="#funcionalidades">Funcionalidades</a>
         <a href="#app">App móvil</a>
@@ -72,283 +500,235 @@
         <a href="#contacto">Contacto</a>
       </nav>
 
-      <div style="display:flex; align-items:center; gap:10px;">
-        <button id="themeToggleBtn" aria-label="Toggle theme" style="width:36px; height:36px; border-radius:50%; border:1px solid var(--border); background:var(--bgSoft); cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--text);">
+      <div class="header-actions">
+        <button id="themeToggleBtn" aria-label="Toggle theme" class="theme-toggle">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.6"/><line x1="12" y1="1.5" x2="12" y2="4" stroke="currentColor" stroke-width="1.6"/><line x1="12" y1="20" x2="12" y2="22.5" stroke="currentColor" stroke-width="1.6"/><line x1="1.5" y1="12" x2="4" y2="12" stroke="currentColor" stroke-width="1.6"/><line x1="20" y1="12" x2="22.5" y2="12" stroke="currentColor" stroke-width="1.6"/></svg>
         </button>
 
         <a href="https://app.xflowpro.com" style="color:var(--textSoft); text-decoration:none; font-weight:600; font-size:14px; white-space:nowrap;">Acceder</a>
-        <a href="#contacto" class="btn-primary">Solicitar demo</a>
+        <a href="#contacto" class="btn btn-primary btn-press" style="padding:10px 18px; font-size:14px;">Solicitar demo</a>
       </div>
     </div>
   </header>
 
   <!-- HERO -->
-  <section id="producto" style="background:var(--heroGradient); padding:clamp(48px,8vw,96px) clamp(20px,6vw,40px) clamp(64px,8vw,110px);">
-    <div style="max-width:1280px; margin:0 auto; display:flex; align-items:center; gap:clamp(32px,5vw,64px); flex-wrap:wrap;">
+  <section id="producto" class="hero section" style="padding-bottom:clamp(72px,9vw,120px);">
+    <div class="hero-inner">
 
-      <div style="flex:1 1 460px; min-width:300px;">
-        <div style="display:inline-flex; align-items:center; gap:8px; background:var(--indigoBg); color:#7C3AED; padding:7px 14px; border-radius:20px; font-size:13px; font-weight:700; margin-bottom:22px;">
-          <span style="width:6px; height:6px; border-radius:50%; background:#7C3AED;"></span>
+      <div class="hero-copy">
+        <div class="eyebrow hero-anim">
+          <span style="width:6px; height:6px; border-radius:50%; background:var(--brand);"></span>
           Tu operación, bajo control
         </div>
-        <h1 style="font-size:clamp(34px,4.6vw,54px); line-height:1.08; font-weight:800; letter-spacing:-0.02em; margin:0 0 22px; color:var(--text); text-wrap:pretty;">Que ninguna tarea se pierda entre planillas, correos y WhatsApp</h1>
-        <p style="font-size:clamp(16px,1.6vw,19px); line-height:1.55; color:var(--textSoft); margin:0 0 32px; max-width:520px; text-wrap:pretty;">xFlowPRO ordena cómo trabaja tu equipo: cada pedido, aprobación o traspaso sigue su camino, con responsable y plazo. Y ves todo en tiempo real, desde la computadora o desde el celular.</p>
+        <h1 class="hero-anim hero-delay-1">Que ninguna tarea se pierda entre planillas, correos y WhatsApp</h1>
+        <p class="hero-lead hero-anim hero-delay-2">xFlowPRO ordena cómo trabaja tu equipo: cada pedido, aprobación o traspaso sigue su camino, con responsable y plazo. Y ves todo en tiempo real, desde la computadora o desde el celular.</p>
 
-        <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-bottom:26px;">
-          <a href="#contacto" style="background:#2563EB; color:#fff; text-decoration:none; font-weight:700; font-size:15.5px; padding:15px 26px; border-radius:11px; box-shadow:0 8px 20px rgba(37,99,235,.28);">Solicitar demo</a>
-          <a href="#funcionalidades" style="color:var(--text); text-decoration:none; font-weight:700; font-size:15.5px; padding:15px 26px; border-radius:11px; border:1.5px solid var(--border);">Ver cómo funciona</a>
+        <div class="hero-cta hero-anim hero-delay-3">
+          <a href="#contacto" class="btn btn-primary btn-press">Solicitar demo</a>
+          <a href="#funcionalidades" class="btn btn-secondary btn-press">Ver cómo funciona</a>
         </div>
 
-        <div style="display:flex; align-items:center; gap:10px; color:var(--textFaint); font-size:13.5px;">
-          <span style="width:8px; height:8px; border-radius:50%; background:#059669; animation:pulseDot 2s infinite;"></span>
+        <div class="hero-proof hero-anim hero-delay-4">
+          <span class="pulse-dot"></span>
           Hoy en producción en una cadena de retail: cierre de caja, traspasos entre tiendas e inventario.
         </div>
       </div>
 
-      <div style="flex:1 1 440px; min-width:300px; position:relative;">
-        <div style="position:relative; background:#0f1526; border-radius:18px; padding:20px; box-shadow:0 30px 60px -20px rgba(15,23,42,.35), 0 10px 24px rgba(15,23,42,.18); overflow:hidden;">
-          <img src="uploads/logo.png" alt="" aria-hidden="true" style="position:absolute; right:-40px; bottom:-40px; width:220px; opacity:.08; pointer-events:none;">
-
-          <div style="display:flex; align-items:center; gap:8px; margin-bottom:18px;">
-            <span style="width:10px; height:10px; border-radius:50%; background:#ef4444;"></span>
-            <span style="width:10px; height:10px; border-radius:50%; background:#f59e0b;"></span>
-            <span style="width:10px; height:10px; border-radius:50%; background:#22c55e;"></span>
-            <span style="color:#cbd5e1; font-size:12.5px; font-weight:600; margin-left:6px;">Diseñador de procesos</span>
-            <span style="margin-left:auto; background:#2563EB; color:#fff; font-size:11.5px; font-weight:700; padding:5px 10px; border-radius:7px;">Publicar</span>
-          </div>
-
-          <div style="display:flex; flex-direction:column; gap:14px; position:relative; z-index:1;">
-            <div style="display:flex; align-items:center; gap:10px;">
-              <span style="width:66px; flex-shrink:0; font-size:11px; color:#94a3b8; font-weight:700; text-transform:uppercase; letter-spacing:.04em;">Ventas</span>
-              <div style="flex:1; display:flex; align-items:center; gap:6px;">
-                <span style="width:34px; height:34px; border-radius:9px; background:#7C3AED; flex-shrink:0;"></span>
-                <span style="flex:1; height:2px; background:#334155;"></span>
-                <span style="width:34px; height:34px; border-radius:9px; background:#2563EB; flex-shrink:0;"></span>
-                <span style="flex:1; height:2px; background:#334155;"></span>
-                <span style="width:34px; height:34px; border-radius:50%; background:#334155; flex-shrink:0; display:flex; align-items:center; justify-content:center;">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 12h11m0 0l-4-4m4 4l-4 4" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </span>
-              </div>
-            </div>
-            <div style="display:flex; align-items:center; gap:10px;">
-              <span style="width:66px; flex-shrink:0; font-size:11px; color:#94a3b8; font-weight:700; text-transform:uppercase; letter-spacing:.04em;">Operaciones</span>
-              <div style="flex:1; display:flex; align-items:center; gap:6px;">
-                <span style="width:34px; height:34px; border-radius:9px; background:#7C3AED; flex-shrink:0;"></span>
-                <span style="flex:1; height:2px; background:#334155;"></span>
-                <span style="width:34px; height:34px; border-radius:9px; transform:rotate(45deg); background:#d97706; flex-shrink:0;"></span>
-                <span style="flex:1; height:2px; background:#334155;"></span>
-                <span style="width:34px; height:34px; border-radius:9px; background:#059669; flex-shrink:0;"></span>
-              </div>
-            </div>
-            <div style="display:flex; align-items:center; gap:10px;">
-              <span style="width:66px; flex-shrink:0; font-size:11px; color:#94a3b8; font-weight:700; text-transform:uppercase; letter-spacing:.04em;">Finanzas</span>
-              <div style="flex:1; display:flex; align-items:center; gap:6px;">
-                <span style="width:34px; height:34px; border-radius:50%; background:#334155; flex-shrink:0;"></span>
-                <span style="flex:1; height:2px; background:#334155;"></span>
-                <span style="width:34px; height:34px; border-radius:9px; background:#2563EB; flex-shrink:0;"></span>
-              </div>
-            </div>
-          </div>
-
-          <div style="margin-top:22px; background:#131c31; border:1px solid #263449; border-radius:12px; padding:13px 15px; display:flex; align-items:center; gap:12px; animation:floatY 4.5s ease-in-out infinite;">
-            <span style="width:9px; height:9px; border-radius:50%; background:#d97706; flex-shrink:0; animation:pulseDotAmber 2s infinite;"></span>
-            <div style="flex:1; min-width:0;">
-              <div style="color:#e2e8f0; font-size:13px; font-weight:700;">Aprobar cotización #4821</div>
-              <div style="color:#94a3b8; font-size:11.5px;">Asignada a M. Torres · vence en 3h</div>
-            </div>
-            <span style="background:#fef3c7; color:#92400e; font-size:11px; font-weight:700; padding:4px 9px; border-radius:6px; flex-shrink:0;">En riesgo</span>
-          </div>
+      <div class="hero-visual hero-anim hero-delay-2">
+        <div class="mock" data-parallax style="padding:0;">
+          <video id="heroVideo" autoplay muted loop playsinline controls preload="metadata" style="display:block; width:100%; height:auto; border-radius:22px; background:#0f1526;">
+            <source src="media/web.mp4" type="video/mp4">
+          </video>
         </div>
       </div>
     </div>
   </section>
 
   <!-- PROBLEMA -> SOLUCION -->
-  <section data-reveal style="padding:clamp(64px,8vw,110px) clamp(20px,6vw,40px); background:var(--bgAlt);">
-    <div style="max-width:1200px; margin:0 auto;">
-      <div style="max-width:640px; margin:0 auto 52px; text-align:center;">
-        <h2 style="font-size:clamp(28px,3.4vw,40px); font-weight:800; letter-spacing:-0.02em; margin:0 0 14px; color:var(--text); text-wrap:pretty;">El proceso ya existe. El problema es que nadie lo controla.</h2>
-        <p style="font-size:16.5px; color:var(--textSoft); margin:0; text-wrap:pretty;">Cuatro señales de que tu operación necesita un motor de procesos, no más planillas.</p>
+  <section data-reveal class="section alt">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="display">El proceso ya existe. El problema es que nadie lo controla.</h2>
+        <p>Cuatro señales de que tu operación necesita un motor de procesos, no más planillas.</p>
       </div>
 
-      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px;">
-        <div style="background:var(--card); border:1px solid var(--border); border-radius:14px; padding:26px; box-shadow:var(--shadow);">
-          <div style="width:42px; height:42px; border-radius:10px; background:var(--redBg); color:#dc2626; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+      <div class="grid grid-4" data-stagger>
+        <div class="card card-pad">
+          <div class="icon-tile" style="background:rgba(220,38,38,.1); color:#dc2626;">
             <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.6"/><line x1="9" y1="3" x2="9" y2="21" stroke="currentColor" stroke-width="1.6"/><line x1="15" y1="3" x2="15" y2="21" stroke="currentColor" stroke-width="1.6"/><line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="1.6"/></svg>
           </div>
-          <h3 style="font-size:17px; font-weight:700; margin:0 0 8px; color:var(--text);">Procesos atrapados en Excel y WhatsApp</h3>
-          <p style="font-size:14.5px; line-height:1.55; color:var(--textSoft); margin:0;">Cada persona sigue el proceso a su manera, en archivos sueltos que nadie audita.</p>
+          <h3 class="card-title">Procesos atrapados en Excel y WhatsApp</h3>
+          <p class="card-sub">Cada persona sigue el proceso a su manera, en archivos sueltos que nadie audita.</p>
         </div>
 
-        <div style="background:var(--card); border:1px solid var(--border); border-radius:14px; padding:26px; box-shadow:var(--shadow);">
-          <div style="width:42px; height:42px; border-radius:10px; background:var(--amberBg); color:#d97706; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+        <div class="card card-pad">
+          <div class="icon-tile" style="background:rgba(217,119,6,.14); color:#d97706;">
             <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><line x1="3" y1="21" x2="21" y2="3" stroke="currentColor" stroke-width="1.6"/></svg>
           </div>
-          <h3 style="font-size:17px; font-weight:700; margin:0 0 8px; color:var(--text);">Cero visibilidad de dónde está cada caso</h3>
-          <p style="font-size:14.5px; line-height:1.55; color:var(--textSoft); margin:0;">Nadie sabe qué tarea está pendiente, quién la tiene, ni cuánto lleva esperando.</p>
+          <h3 class="card-title">Cero visibilidad de dónde está cada caso</h3>
+          <p class="card-sub">Nadie sabe qué tarea está pendiente, quién la tiene, ni cuánto lleva esperando.</p>
         </div>
 
-        <div style="background:var(--card); border:1px solid var(--border); border-radius:14px; padding:26px; box-shadow:var(--shadow);">
-          <div style="width:42px; height:42px; border-radius:10px; background:var(--violetBg); color:#7C3AED; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+        <div class="card card-pad">
+          <div class="icon-tile" style="background:rgba(124,58,237,.12); color:#7C3AED;">
             <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M3 6l9 7 9-7" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>
           </div>
-          <h3 style="font-size:17px; font-weight:700; margin:0 0 8px; color:var(--text);">Tareas que se pierden entre correos</h3>
-          <p style="font-size:14.5px; line-height:1.55; color:var(--textSoft); margin:0;">Sin bandeja de tareas ni asignación clara, las excepciones se resuelven a los gritos.</p>
+          <h3 class="card-title">Tareas que se pierden entre correos</h3>
+          <p class="card-sub">Sin bandeja de tareas ni asignación clara, las excepciones se resuelven a los gritos.</p>
         </div>
 
-        <div style="background:var(--card); border:1px solid var(--border); border-radius:14px; padding:26px; box-shadow:var(--shadow);">
-          <div style="width:42px; height:42px; border-radius:10px; background:var(--tealBg); color:#2563EB; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+        <div class="card card-pad">
+          <div class="icon-tile" style="background:rgba(37,99,235,.12); color:#2563EB;">
             <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><line x1="12" y1="7" x2="12" y2="12.5" stroke="currentColor" stroke-width="1.6"/><line x1="12" y1="12.5" x2="15.2" y2="14.5" stroke="currentColor" stroke-width="1.6"/></svg>
           </div>
-          <h3 style="font-size:17px; font-weight:700; margin:0 0 8px; color:var(--text);">Sin plazos, sin alertas, sin datos</h3>
-          <p style="font-size:14.5px; line-height:1.55; color:var(--textSoft); margin:0;">Nadie mide cuánto tarda cada cosa hasta que el cliente se queja.</p>
+          <h3 class="card-title">Sin plazos, sin alertas, sin datos</h3>
+          <p class="card-sub">Nadie mide cuánto tarda cada cosa hasta que el cliente se queja.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- FUNCIONALIDADES -->
-  <section id="funcionalidades" data-reveal style="padding:clamp(64px,8vw,110px) clamp(20px,6vw,40px); background:var(--bg);">
-    <div style="max-width:1200px; margin:0 auto;">
-      <div style="max-width:640px; margin:0 auto 52px; text-align:center;">
-        <h2 style="font-size:clamp(28px,3.4vw,40px); font-weight:800; letter-spacing:-0.02em; margin:0 0 14px; color:var(--text); text-wrap:pretty;">Todo lo que necesitas para que la operación no dependa de la memoria de nadie</h2>
-        <p style="font-size:16.5px; color:var(--textSoft); margin:0; text-wrap:pretty;">Fácil para el equipo que lo usa. Sólido para el que lo administra.</p>
+  <section id="funcionalidades" data-reveal class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="display">Todo lo que necesitas para que la operación no dependa de la memoria de nadie</h2>
+        <p>Fácil para el equipo que lo usa. Sólido para el que lo administra.</p>
       </div>
 
-      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px;">
-        <div style="background:var(--card); border:1px solid var(--border); border-radius:14px; padding:26px; box-shadow:var(--shadow);">
-          <div style="width:42px; height:42px; border-radius:10px; background:var(--indigoBg); color:#7C3AED; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+      <div class="grid grid-3" data-stagger>
+        <div class="card card-pad">
+          <div class="icon-tile" style="background:rgba(124,58,237,.12); color:#7C3AED;">
             <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><circle cx="4" cy="12" r="2.1" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="6" r="2.1" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="18" r="2.1" stroke="currentColor" stroke-width="1.6"/><circle cx="20" cy="12" r="2.1" stroke="currentColor" stroke-width="1.6"/><line x1="6" y1="11" x2="10" y2="7.3" stroke="currentColor" stroke-width="1.6"/><line x1="6" y1="13" x2="10" y2="16.7" stroke="currentColor" stroke-width="1.6"/><line x1="14" y1="6.7" x2="18" y2="11" stroke="currentColor" stroke-width="1.6"/><line x1="14" y1="17.3" x2="18" y2="13" stroke="currentColor" stroke-width="1.6"/></svg>
           </div>
-          <h3 style="font-size:16.5px; font-weight:700; margin:0 0 8px; color:var(--text);">Diseña tu proceso arrastrando</h3>
-          <p style="font-size:14px; line-height:1.55; color:var(--textSoft); margin:0;">Armas el circuito como lo dibujarías en una pizarra: quién hace qué, en qué orden, y qué pasa si algo se aprueba o se rechaza.</p>
+          <h3 class="card-title">Diseña tu proceso arrastrando</h3>
+          <p class="card-sub">Armas el circuito como lo dibujarías en una pizarra: quién hace qué, en qué orden, y qué pasa si algo se aprueba o se rechaza.</p>
         </div>
 
-        <div style="background:var(--card); border:1px solid var(--border); border-radius:14px; padding:26px; box-shadow:var(--shadow);">
-          <div style="width:42px; height:42px; border-radius:10px; background:var(--tealBg); color:#2563EB; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+        <div class="card card-pad">
+          <div class="icon-tile" style="background:rgba(37,99,235,.12); color:#2563EB;">
             <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M10 8.5L16 12L10 15.5Z" fill="currentColor"/></svg>
           </div>
-          <h3 style="font-size:16.5px; font-weight:700; margin:0 0 8px; color:var(--text);">Historial completo de cada caso</h3>
-          <p style="font-size:14px; line-height:1.55; color:var(--textSoft); margin:0;">Quién hizo qué, cuándo y con qué datos. Si alguien pregunta qué pasó con un pedido, la respuesta está ahí.</p>
+          <h3 class="card-title">Historial completo de cada caso</h3>
+          <p class="card-sub">Quién hizo qué, cuándo y con qué datos. Si alguien pregunta qué pasó con un pedido, la respuesta está ahí.</p>
         </div>
 
-        <div style="background:var(--card); border:1px solid var(--border); border-radius:14px; padding:26px; box-shadow:var(--shadow);">
-          <div style="width:42px; height:42px; border-radius:10px; background:var(--greenBg); color:#059669; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+        <div class="card card-pad">
+          <div class="icon-tile" style="background:rgba(5,150,105,.12); color:#059669;">
             <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><rect x="4" y="3" width="16" height="18" rx="2" stroke="currentColor" stroke-width="1.6"/><line x1="8" y1="8" x2="16" y2="8" stroke="currentColor" stroke-width="1.6"/><path d="M8 15.5L10 17.5L16 13" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>
           </div>
-          <h3 style="font-size:16.5px; font-weight:700; margin:0 0 8px; color:var(--text);">Bandeja de tareas para tu equipo</h3>
-          <p style="font-size:14px; line-height:1.55; color:var(--textSoft); margin:0;">Cada persona ve lo suyo y puede tomar, delegar, escalar o poner en pausa una tarea. Sin perseguir a nadie.</p>
+          <h3 class="card-title">Bandeja de tareas para tu equipo</h3>
+          <p class="card-sub">Cada persona ve lo suyo y puede tomar, delegar, escalar o poner en pausa una tarea. Sin perseguir a nadie.</p>
         </div>
 
-        <div style="background:var(--card); border:1px solid var(--border); border-radius:14px; padding:26px; box-shadow:var(--shadow);">
-          <div style="width:42px; height:42px; border-radius:10px; background:var(--amberBg); color:#d97706; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+        <div class="card card-pad">
+          <div class="icon-tile" style="background:rgba(217,119,6,.14); color:#d97706;">
             <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><line x1="4" y1="20" x2="20" y2="20" stroke="currentColor" stroke-width="1.6"/><rect x="6" y="12" width="3" height="8" fill="currentColor"/><rect x="11" y="8" width="3" height="12" fill="currentColor"/><rect x="16" y="4" width="3" height="16" fill="currentColor"/></svg>
           </div>
-          <h3 style="font-size:16.5px; font-weight:700; margin:0 0 8px; color:var(--text);">Tablero de control</h3>
-          <p style="font-size:14px; line-height:1.55; color:var(--textSoft); margin:0;">Qué se está atrasando, dónde se traba la operación y cuánto tarda cada proceso. Con filtros por fecha, área y sucursal.</p>
+          <h3 class="card-title">Tablero de control</h3>
+          <p class="card-sub">Qué se está atrasando, dónde se traba la operación y cuánto tarda cada proceso. Con filtros por fecha, área y sucursal.</p>
         </div>
 
-        <div style="background:var(--card); border:1px solid var(--border); border-radius:14px; padding:26px; box-shadow:var(--shadow);">
-          <div style="width:42px; height:42px; border-radius:10px; background:var(--violetBg); color:#7C3AED; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+        <div class="card card-pad">
+          <div class="icon-tile" style="background:rgba(124,58,237,.12); color:#7C3AED;">
             <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="5" r="2.1" stroke="currentColor" stroke-width="1.6"/><circle cx="6" cy="18" r="2.1" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="18" r="2.1" stroke="currentColor" stroke-width="1.6"/><line x1="10.5" y1="7" x2="7" y2="16" stroke="currentColor" stroke-width="1.6"/><line x1="13.5" y1="7" x2="17" y2="16" stroke="currentColor" stroke-width="1.6"/></svg>
           </div>
-          <h3 style="font-size:16.5px; font-weight:700; margin:0 0 8px; color:var(--text);">Aprobaciones que respetan tu organigrama</h3>
-          <p style="font-size:14px; line-height:1.55; color:var(--textSoft); margin:0;">Quién aprueba a quién, quién lo reemplaza cuando no está, y a quién se escala si nadie responde a tiempo.</p>
+          <h3 class="card-title">Aprobaciones que respetan tu organigrama</h3>
+          <p class="card-sub">Quién aprueba a quién, quién lo reemplaza cuando no está, y a quién se escala si nadie responde a tiempo.</p>
         </div>
 
-        <div style="background:var(--card); border:1px solid var(--border); border-radius:14px; padding:26px; box-shadow:var(--shadow);">
-          <div style="width:42px; height:42px; border-radius:10px; background:var(--blueBg); color:#1e40af; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+        <div class="card card-pad">
+          <div class="icon-tile" style="background:rgba(30,64,175,.12); color:#1e40af;">
             <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><circle cx="9" cy="12" r="5" stroke="currentColor" stroke-width="1.6"/><circle cx="15" cy="12" r="5" stroke="currentColor" stroke-width="1.6"/></svg>
           </div>
-          <h3 style="font-size:16.5px; font-weight:700; margin:0 0 8px; color:var(--text);">Se conecta con lo que ya usas</h3>
-          <p style="font-size:14px; line-height:1.55; color:var(--textSoft); margin:0;">Se integra con tu ERP o SAP para que los datos entren y salgan solos, sin exportar e importar planillas.</p>
+          <h3 class="card-title">Se conecta con lo que ya usas</h3>
+          <p class="card-sub">Se integra con tu ERP o SAP para que los datos entren y salgan solos, sin exportar e importar planillas.</p>
         </div>
 
-        <div style="background:var(--card); border:1px solid var(--border); border-radius:14px; padding:26px; box-shadow:var(--shadow);">
-          <div style="width:42px; height:42px; border-radius:10px; background:var(--indigoBg); color:#7C3AED; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+        <div class="card card-pad">
+          <div class="icon-tile" style="background:rgba(124,58,237,.12); color:#7C3AED;">
             <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><rect x="7" y="2" width="10" height="20" rx="2" stroke="currentColor" stroke-width="1.6"/><line x1="10.5" y1="19" x2="13.5" y2="19" stroke="currentColor" stroke-width="1.6"/></svg>
           </div>
-          <h3 style="font-size:16.5px; font-weight:700; margin:0 0 8px; color:var(--text);">App móvil para el equipo de campo</h3>
-          <p style="font-size:14px; line-height:1.55; color:var(--textSoft); margin:0;">Tienda, almacén y ruta trabajan desde el celular: escaneo de códigos con la cámara y avisos al instante cuando les cae una tarea.</p>
+          <h3 class="card-title">App móvil para el equipo de campo</h3>
+          <p class="card-sub">Tienda, almacén y ruta trabajan desde el celular: escaneo de códigos con la cámara y avisos al instante cuando les cae una tarea.</p>
         </div>
 
-        <div style="background:var(--card); border:1px solid var(--border); border-radius:14px; padding:26px; box-shadow:var(--shadow);">
-          <div style="width:42px; height:42px; border-radius:10px; background:var(--tealBg); color:#2563EB; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+        <div class="card card-pad">
+          <div class="icon-tile" style="background:rgba(37,99,235,.12); color:#2563EB;">
             <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M12 3a9 9 0 000 18 7 7 0 010-18Z" fill="currentColor"/></svg>
           </div>
-          <h3 style="font-size:16.5px; font-weight:700; margin:0 0 8px; color:var(--text);">Cómoda de usar todo el día</h3>
-          <p style="font-size:14px; line-height:1.55; color:var(--textSoft); margin:0;">Modo oscuro, español e inglés, y búsqueda rápida para llegar a cualquier lugar en dos teclas.</p>
+          <h3 class="card-title">Cómoda de usar todo el día</h3>
+          <p class="card-sub">Modo oscuro, español e inglés, y búsqueda rápida para llegar a cualquier lugar en dos teclas.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- COMO FUNCIONA -->
-  <section data-reveal style="padding:clamp(64px,8vw,110px) clamp(20px,6vw,40px); background:var(--bgAlt);">
-    <div style="max-width:1200px; margin:0 auto;">
-      <div style="max-width:640px; margin:0 auto 52px; text-align:center;">
-        <h2 style="font-size:clamp(28px,3.4vw,40px); font-weight:800; letter-spacing:-0.02em; margin:0 0 14px; color:var(--text); text-wrap:pretty;">Cómo funciona</h2>
-        <p style="font-size:16.5px; color:var(--textSoft); margin:0; text-wrap:pretty;">De la idea a un proceso corriendo, en cuatro pasos.</p>
+  <section data-reveal class="section alt">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="display">Cómo funciona</h2>
+        <p>De la idea a un proceso corriendo, en cuatro pasos.</p>
       </div>
 
-      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:24px;">
-        <div style="text-align:left;">
-          <div style="width:44px; height:44px; border-radius:50%; background:#7C3AED; color:#fff; font-weight:800; font-size:17px; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">1</div>
-          <h3 style="font-size:16.5px; font-weight:700; margin:0 0 8px; color:var(--text);">Dibuja tu proceso</h3>
-          <p style="font-size:14px; line-height:1.55; color:var(--textSoft); margin:0;">Defines quién hace qué, en qué orden y con qué condiciones. Sin escribir una línea de código.</p>
+      <div class="grid grid-4" style="gap:24px;" data-stagger>
+        <div>
+          <div class="step-num" style="background:#7C3AED;">1</div>
+          <h3 class="card-title">Dibuja tu proceso</h3>
+          <p class="card-sub">Defines quién hace qué, en qué orden y con qué condiciones. Sin escribir una línea de código.</p>
         </div>
-        <div style="text-align:left;">
-          <div style="width:44px; height:44px; border-radius:50%; background:#2563EB; color:#fff; font-weight:800; font-size:17px; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">2</div>
-          <h3 style="font-size:16.5px; font-weight:700; margin:0 0 8px; color:var(--text);">Publica y empieza a operar</h3>
-          <p style="font-size:14px; line-height:1.55; color:var(--textSoft); margin:0;">Cada caso arranca su recorrido con su responsable, su plazo y su historial.</p>
+        <div>
+          <div class="step-num" style="background:#2563EB;">2</div>
+          <h3 class="card-title">Publica y empieza a operar</h3>
+          <p class="card-sub">Cada caso arranca su recorrido con su responsable, su plazo y su historial.</p>
         </div>
-        <div style="text-align:left;">
-          <div style="width:44px; height:44px; border-radius:50%; background:#7C3AED; color:#fff; font-weight:800; font-size:17px; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">3</div>
-          <h3 style="font-size:16.5px; font-weight:700; margin:0 0 8px; color:var(--text);">Tu equipo trabaja desde donde esté</h3>
-          <p style="font-size:14px; line-height:1.55; color:var(--textSoft); margin:0;">En la oficina desde la web; en tienda o en ruta, desde la app del celular.</p>
+        <div>
+          <div class="step-num" style="background:#7C3AED;">3</div>
+          <h3 class="card-title">Tu equipo trabaja desde donde esté</h3>
+          <p class="card-sub">En la oficina desde la web; en tienda o en ruta, desde la app del celular.</p>
         </div>
-        <div style="text-align:left;">
-          <div style="width:44px; height:44px; border-radius:50%; background:#059669; color:#fff; font-weight:800; font-size:17px; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">4</div>
-          <h3 style="font-size:16.5px; font-weight:700; margin:0 0 8px; color:var(--text);">Mide y ajusta</h3>
-          <p style="font-size:14px; line-height:1.55; color:var(--textSoft); margin:0;">Ves dónde se atrasa la operación y corriges el proceso con datos, no con intuición.</p>
+        <div>
+          <div class="step-num" style="background:#059669;">4</div>
+          <h3 class="card-title">Mide y ajusta</h3>
+          <p class="card-sub">Ves dónde se atrasa la operación y corriges el proceso con datos, no con intuición.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- APP MOVIL -->
-  <section id="app" data-reveal style="padding:clamp(64px,8vw,110px) clamp(20px,6vw,40px); background:var(--heroGradient);">
-    <div style="max-width:1100px; margin:0 auto;">
-      <div style="max-width:660px; margin:0 auto 48px; text-align:center;">
-        <span style="display:inline-block; background:#2563EB; color:#fff; font-size:12px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; padding:6px 13px; border-radius:20px; margin-bottom:18px;">Nuevo</span>
-        <h2 style="font-size:clamp(28px,3.4vw,40px); font-weight:800; letter-spacing:-0.02em; margin:0 0 14px; color:var(--text); text-wrap:pretty;">Tu operación también en el bolsillo</h2>
-        <p style="font-size:16.5px; line-height:1.6; color:var(--textSoft); margin:0; text-wrap:pretty;">La app de xFlowPRO pone las tareas donde realmente pasa el trabajo: en el piso de tienda, en el almacén y en la calle.</p>
+  <section id="app" data-reveal class="section" style="background:linear-gradient(180deg, rgba(37,99,235,.06), transparent 240px), var(--bg);">
+    <div class="container" style="max-width:1100px;">
+      <div class="section-head" style="max-width:660px;">
+        <span style="display:inline-block; background:var(--accent); color:#fff; font-size:12px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; padding:6px 14px; border-radius:999px; margin-bottom:18px;">Nuevo</span>
+        <h2 class="display">Tu operación también en el bolsillo</h2>
+        <p style="line-height:1.6;">La app de xFlowPRO pone las tareas donde realmente pasa el trabajo: en el piso de tienda, en el almacén y en la calle.</p>
       </div>
 
-      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:22px; margin-bottom:34px;">
-        <div style="background:var(--card); border:1px solid var(--border); border-radius:16px; padding:28px; box-shadow:var(--shadow);">
-          <div style="width:42px; height:42px; border-radius:11px; background:var(--tealBg); display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+      <div class="grid grid-3" style="margin-bottom:34px;" data-stagger>
+        <div class="card card-pad">
+          <div class="icon-tile" style="background:rgba(37,99,235,.12);">
             <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M7 8v8"/><path d="M11 8v8"/><path d="M15 8v8"/></svg>
           </div>
-          <h3 style="font-size:17.5px; font-weight:700; margin:0 0 9px; color:var(--text);">Escaneo con la cámara</h3>
-          <p style="font-size:14.5px; line-height:1.6; color:var(--textSoft); margin:0;">Lee códigos de barras y SKU directo con el celular, sin comprar lectores.</p>
+          <h3 class="card-title">Escaneo con la cámara</h3>
+          <p class="card-sub">Lee códigos de barras y SKU directo con el celular, sin comprar lectores.</p>
         </div>
 
-        <div style="background:var(--card); border:1px solid var(--border); border-radius:16px; padding:28px; box-shadow:var(--shadow);">
-          <div style="width:42px; height:42px; border-radius:11px; background:var(--indigoBg); display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+        <div class="card card-pad">
+          <div class="icon-tile" style="background:rgba(124,58,237,.12);">
             <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
           </div>
-          <h3 style="font-size:17.5px; font-weight:700; margin:0 0 9px; color:var(--text);">Avisos al instante</h3>
-          <p style="font-size:14.5px; line-height:1.6; color:var(--textSoft); margin:0;">Cuando a alguien le cae una tarea, le llega la notificación al teléfono. Y si le caen varias juntas, recibe un solo aviso, no cinco seguidos.</p>
+          <h3 class="card-title">Avisos al instante</h3>
+          <p class="card-sub">Cuando a alguien le cae una tarea, le llega la notificación al teléfono. Y si le caen varias juntas, recibe un solo aviso, no cinco seguidos.</p>
         </div>
 
-        <div style="background:var(--card); border:1px solid var(--border); border-radius:16px; padding:28px; box-shadow:var(--shadow);">
-          <div style="width:42px; height:42px; border-radius:11px; background:var(--violetBg); display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
+        <div class="card card-pad">
+          <div class="icon-tile" style="background:rgba(124,58,237,.12);">
             <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2.5"/><path d="M12 18h.01"/></svg>
           </div>
-          <h3 style="font-size:17.5px; font-weight:700; margin:0 0 9px; color:var(--text);">Pensada para trabajar de pie</h3>
-          <p style="font-size:14.5px; line-height:1.6; color:var(--textSoft); margin:0;">Pantallas simples y botones grandes: entrar, resolver la tarea y seguir.</p>
+          <h3 class="card-title">Pensada para trabajar de pie</h3>
+          <p class="card-sub">Pantallas simples y botones grandes: entrar, resolver la tarea y seguir.</p>
         </div>
       </div>
 
@@ -357,60 +737,60 @@
   </section>
 
   <!-- DASHBOARD / METRICAS -->
-  <section data-reveal style="padding:clamp(64px,8vw,110px) clamp(20px,6vw,40px); background:var(--bg);">
-    <div style="max-width:1200px; margin:0 auto;">
-      <div style="max-width:640px; margin:0 auto 48px; text-align:center;">
-        <h2 style="font-size:clamp(28px,3.4vw,40px); font-weight:800; letter-spacing:-0.02em; margin:0 0 14px; color:var(--text); text-wrap:pretty;">Un tablero que habla el idioma de operaciones</h2>
-        <p style="font-size:16.5px; color:var(--textSoft); margin:0; text-wrap:pretty;">Atrasos, cuellos de botella y carga de trabajo, en un solo lugar.</p>
+  <section data-reveal class="section alt">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="display">Un tablero que habla el idioma de operaciones</h2>
+        <p>Atrasos, cuellos de botella y carga de trabajo, en un solo lugar.</p>
       </div>
 
-      <div style="background:var(--card); border:1px solid var(--border); border-radius:18px; padding:clamp(20px,3vw,32px); box-shadow:var(--shadow);">
+      <div class="card" style="padding:clamp(20px,3vw,32px);">
 
-        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:16px; margin-bottom:28px;">
-          <div style="background:var(--greenBg); border-radius:12px; padding:18px;">
+        <div class="grid grid-4" style="gap:16px; margin-bottom:28px;" data-stagger>
+          <div style="background:rgba(5,150,105,.1); border-radius:14px; padding:18px; border:1px solid rgba(5,150,105,.15);">
             <div style="font-size:12.5px; font-weight:700; color:#059669; text-transform:uppercase; letter-spacing:.04em; margin-bottom:6px;">A tiempo</div>
-            <div style="font-size:32px; font-weight:800; color:#065f46;">78%</div>
+            <div class="count" data-target="78" data-suffix="%" style="font-size:32px; font-weight:800; letter-spacing:-0.02em; color:#065f46;">0%</div>
           </div>
-          <div style="background:var(--amberBg); border-radius:12px; padding:18px;">
+          <div style="background:rgba(217,119,6,.12); border-radius:14px; padding:18px; border:1px solid rgba(217,119,6,.16);">
             <div style="font-size:12.5px; font-weight:700; color:#d97706; text-transform:uppercase; letter-spacing:.04em; margin-bottom:6px;">En riesgo</div>
-            <div style="font-size:32px; font-weight:800; color:#92400e;">14%</div>
+            <div class="count" data-target="14" data-suffix="%" style="font-size:32px; font-weight:800; letter-spacing:-0.02em; color:#92400e;">0%</div>
           </div>
-          <div style="background:var(--redBg); border-radius:12px; padding:18px;">
+          <div style="background:rgba(220,38,38,.08); border-radius:14px; padding:18px; border:1px solid rgba(220,38,38,.12);">
             <div style="font-size:12.5px; font-weight:700; color:#dc2626; text-transform:uppercase; letter-spacing:.04em; margin-bottom:6px;">Vencido</div>
-            <div style="font-size:32px; font-weight:800; color:#991b1b;">8%</div>
+            <div class="count" data-target="8" data-suffix="%" style="font-size:32px; font-weight:800; letter-spacing:-0.02em; color:#991b1b;">0%</div>
           </div>
-          <div style="background:var(--indigoBg); border-radius:12px; padding:18px;">
+          <div style="background:rgba(124,58,237,.1); border-radius:14px; padding:18px; border:1px solid rgba(124,58,237,.15);">
             <div style="font-size:12.5px; font-weight:700; color:#7C3AED; text-transform:uppercase; letter-spacing:.04em; margin-bottom:6px;">Demora prom.</div>
-            <div style="font-size:32px; font-weight:800; color:#4338ca;">2.4<span style="font-size:16px; font-weight:700;"> días</span></div>
+            <div class="count" data-target="2.4" data-decimals="1" data-suffix=" días" style="font-size:32px; font-weight:800; letter-spacing:-0.02em; color:#4338ca;">0 días</div>
           </div>
         </div>
 
-        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:32px;">
+        <div class="grid grid-2" style="gap:32px;">
           <div>
             <div style="font-size:13.5px; font-weight:700; color:var(--text); margin-bottom:14px;">Carga por flujo</div>
             <div style="display:flex; flex-direction:column; gap:12px;">
               <div>
                 <div style="display:flex; justify-content:space-between; font-size:13px; color:var(--textSoft); margin-bottom:5px;"><span>Aprobación de compras</span><span>82%</span></div>
-                <div style="height:7px; border-radius:4px; background:var(--bgSoft); overflow:hidden;"><div style="width:82%; height:100%; background:#7C3AED; border-radius:4px;"></div></div>
+                <div class="bar"><div class="bar-fill" data-width="82" style="background:#7C3AED;"></div></div>
               </div>
               <div>
                 <div style="display:flex; justify-content:space-between; font-size:13px; color:var(--textSoft); margin-bottom:5px;"><span>Onboarding de empleados</span><span>65%</span></div>
-                <div style="height:7px; border-radius:4px; background:var(--bgSoft); overflow:hidden;"><div style="width:65%; height:100%; background:#2563EB; border-radius:4px;"></div></div>
+                <div class="bar"><div class="bar-fill" data-width="65" style="background:#2563EB;"></div></div>
               </div>
               <div>
                 <div style="display:flex; justify-content:space-between; font-size:13px; color:var(--textSoft); margin-bottom:5px;"><span>Traspaso entre tiendas</span><span>54%</span></div>
-                <div style="height:7px; border-radius:4px; background:var(--bgSoft); overflow:hidden;"><div style="width:54%; height:100%; background:#7C3AED; border-radius:4px;"></div></div>
+                <div class="bar"><div class="bar-fill" data-width="54" style="background:#7C3AED;"></div></div>
               </div>
               <div>
                 <div style="display:flex; justify-content:space-between; font-size:13px; color:var(--textSoft); margin-bottom:5px;"><span>Cotizaciones</span><span>40%</span></div>
-                <div style="height:7px; border-radius:4px; background:var(--bgSoft); overflow:hidden;"><div style="width:40%; height:100%; background:#d97706; border-radius:4px;"></div></div>
+                <div class="bar"><div class="bar-fill" data-width="40" style="background:#d97706;"></div></div>
               </div>
             </div>
           </div>
 
-          <div style="display:flex; flex-direction:column; justify-content:center; background:var(--bgSoft); border-radius:12px; padding:22px;">
+          <div style="display:flex; flex-direction:column; justify-content:center; background:var(--bgSoft); border-radius:14px; padding:22px;">
             <div style="font-size:13px; color:var(--textSoft); margin-bottom:6px;">Tiempo promedio de un caso</div>
-            <div style="font-size:30px; font-weight:800; color:var(--text); margin-bottom:8px;">2.4 días</div>
+            <div style="font-size:30px; font-weight:800; letter-spacing:-0.02em; color:var(--text); margin-bottom:8px;">2.4 días</div>
             <div style="display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:700; color:#059669;">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 16l6-6 4 4 6-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
               -18% vs. mes anterior
@@ -422,208 +802,197 @@
   </section>
 
   <!-- CASOS DE USO -->
-  <section id="casos" data-reveal style="padding:clamp(64px,8vw,110px) clamp(20px,6vw,40px); background:var(--bgAlt);">
-    <div style="max-width:1200px; margin:0 auto;">
-      <div style="max-width:640px; margin:0 auto 52px; text-align:center;">
-        <h2 style="font-size:clamp(28px,3.4vw,40px); font-weight:800; letter-spacing:-0.02em; margin:0 0 14px; color:var(--text); text-wrap:pretty;">Casos de uso reales</h2>
-        <p style="font-size:16.5px; color:var(--textSoft); margin:0; text-wrap:pretty;">Procesos con pasos, responsables y reglas — el terreno donde xFlowPRO se usa todos los días.</p>
+  <section id="casos" data-reveal class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="display">Casos de uso reales</h2>
+        <p>Procesos con pasos, responsables y reglas — el terreno donde xFlowPRO se usa todos los días.</p>
       </div>
 
-      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:22px;">
-        <div style="background:var(--card); border:1px solid var(--border); border-radius:16px; padding:28px; box-shadow:var(--shadow);">
-          <span style="display:inline-block; background:var(--indigoBg); color:#7C3AED; font-size:12px; font-weight:700; padding:5px 11px; border-radius:8px; margin-bottom:16px;">Retail y operaciones</span>
-          <h3 style="font-size:18px; font-weight:700; margin:0 0 10px; color:var(--text);">Arqueo de caja, traspasos e inventario</h3>
-          <p style="font-size:14.5px; line-height:1.6; color:var(--textSoft); margin:0;">El cierre de caja, los traspasos entre tiendas y el conteo de inventario, con escaneo de códigos desde el celular e historial completo por sucursal.</p>
+      <div class="grid grid-3" data-stagger>
+        <div class="card card-pad">
+          <span class="pill-tag" style="background:rgba(124,58,237,.12); color:#7C3AED;">Retail y operaciones</span>
+          <h3 class="card-title" style="font-size:18px;">Arqueo de caja, traspasos e inventario</h3>
+          <p class="card-sub">El cierre de caja, los traspasos entre tiendas y el conteo de inventario, con escaneo de códigos desde el celular e historial completo por sucursal.</p>
         </div>
-        <div style="background:var(--card); border:1px solid var(--border); border-radius:16px; padding:28px; box-shadow:var(--shadow);">
-          <span style="display:inline-block; background:var(--tealBg); color:#2563EB; font-size:12px; font-weight:700; padding:5px 11px; border-radius:8px; margin-bottom:16px;">Aprobaciones</span>
-          <h3 style="font-size:18px; font-weight:700; margin:0 0 10px; color:var(--text);">Cotizaciones y aprobaciones internas</h3>
-          <p style="font-size:14.5px; line-height:1.6; color:var(--textSoft); margin:0;">Cada solicitud llega a quien corresponde según tus reglas, y se escala sola si nadie responde a tiempo.</p>
+        <div class="card card-pad">
+          <span class="pill-tag" style="background:rgba(37,99,235,.12); color:#2563EB;">Aprobaciones</span>
+          <h3 class="card-title" style="font-size:18px;">Cotizaciones y aprobaciones internas</h3>
+          <p class="card-sub">Cada solicitud llega a quien corresponde según tus reglas, y se escala sola si nadie responde a tiempo.</p>
         </div>
-        <div style="background:var(--card); border:1px solid var(--border); border-radius:16px; padding:28px; box-shadow:var(--shadow);">
-          <span style="display:inline-block; background:var(--violetBg); color:#7C3AED; font-size:12px; font-weight:700; padding:5px 11px; border-radius:8px; margin-bottom:16px;">Integraciones</span>
-          <h3 style="font-size:18px; font-weight:700; margin:0 0 10px; color:var(--text);">Conectado a tu ERP o SAP</h3>
-          <p style="font-size:14.5px; line-height:1.6; color:var(--textSoft); margin:0;">Los datos se sincronizan con tus sistemas actuales, sin depender de que alguien exporte e importe planillas.</p>
+        <div class="card card-pad">
+          <span class="pill-tag" style="background:rgba(124,58,237,.12); color:#7C3AED;">Integraciones</span>
+          <h3 class="card-title" style="font-size:18px;">Conectado a tu ERP o SAP</h3>
+          <p class="card-sub">Los datos se sincronizan con tus sistemas actuales, sin depender de que alguien exporte e importe planillas.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- POR QUE XFLOWPRO -->
-  <section data-reveal style="padding:clamp(64px,8vw,110px) clamp(20px,6vw,40px); background:var(--bg);">
-    <div style="max-width:900px; margin:0 auto;">
-      <div style="max-width:640px; margin:0 auto 44px; text-align:center;">
-        <h2 style="font-size:clamp(28px,3.4vw,40px); font-weight:800; letter-spacing:-0.02em; margin:0 0 14px; color:var(--text); text-wrap:pretty;">Por qué xFlowPRO</h2>
-        <p style="font-size:16.5px; color:var(--textSoft); margin:0; text-wrap:pretty;">La potencia de un sistema grande, sin la complicación de uno grande.</p>
+  <section data-reveal class="section alt">
+    <div class="container" style="max-width:900px;">
+      <div class="section-head" style="max-width:640px;">
+        <h2 class="display">Por qué xFlowPRO</h2>
+        <p>La potencia de un sistema grande, sin la complicación de uno grande.</p>
       </div>
 
-      <div style="background:var(--card); border:1px solid var(--border); border-radius:16px; overflow:hidden; box-shadow:var(--shadow);">
-        <div style="display:grid; grid-template-columns:1.3fr 1fr 1fr; padding:16px clamp(16px,3vw,26px); background:var(--bgSoft); font-size:12.5px; font-weight:700; color:var(--textFaint); text-transform:uppercase; letter-spacing:.03em;">
+      <div class="compare">
+        <div class="compare-row compare-head">
           <div>Aspecto</div>
           <div>Plataforma tradicional</div>
           <div>xFlowPRO</div>
         </div>
 
-        <div style="display:grid; grid-template-columns:1.3fr 1fr 1fr; padding:16px clamp(16px,3vw,26px); border-top:1px solid var(--border); align-items:center;">
-          <div style="font-size:14.5px; font-weight:600; color:var(--text);">Tiempo de implementación</div>
-          <div style="font-size:13.5px; color:var(--textFaint);">Meses de consultoría</div>
-          <div style="display:flex; align-items:center; gap:7px; font-size:13.5px; font-weight:600; color:#059669;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Semanas, con plantillas listas</div>
+        <div class="compare-row">
+          <div class="compare-aspect">Tiempo de implementación</div>
+          <div class="compare-traditional">Meses de consultoría</div>
+          <div class="compare-win"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Semanas, con plantillas listas</div>
         </div>
-        <div style="display:grid; grid-template-columns:1.3fr 1fr 1fr; padding:16px clamp(16px,3vw,26px); border-top:1px solid var(--border); align-items:center;">
-          <div style="font-size:14.5px; font-weight:600; color:var(--text);">Curva de aprendizaje</div>
-          <div style="font-size:13.5px; color:var(--textFaint);">Requiere programar o certificarse</div>
-          <div style="display:flex; align-items:center; gap:7px; font-size:13.5px; font-weight:600; color:#059669;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Se aprende usándolo, sin certificaciones</div>
+        <div class="compare-row">
+          <div class="compare-aspect">Curva de aprendizaje</div>
+          <div class="compare-traditional">Requiere programar o certificarse</div>
+          <div class="compare-win"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Se aprende usándolo, sin certificaciones</div>
         </div>
-        <div style="display:grid; grid-template-columns:1.3fr 1fr 1fr; padding:16px clamp(16px,3vw,26px); border-top:1px solid var(--border); align-items:center;">
-          <div style="font-size:14.5px; font-weight:600; color:var(--text);">Ejecución real</div>
-          <div style="font-size:13.5px; color:var(--textFaint);">Diagramas que no se ejecutan</div>
-          <div style="display:flex; align-items:center; gap:7px; font-size:13.5px; font-weight:600; color:#059669;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Lo que diseñas corre de verdad</div>
+        <div class="compare-row">
+          <div class="compare-aspect">Ejecución real</div>
+          <div class="compare-traditional">Diagramas que no se ejecutan</div>
+          <div class="compare-win"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Lo que diseñas corre de verdad</div>
         </div>
-        <div style="display:grid; grid-template-columns:1.3fr 1fr 1fr; padding:16px clamp(16px,3vw,26px); border-top:1px solid var(--border); align-items:center;">
-          <div style="font-size:14.5px; font-weight:600; color:var(--text);">Soporte mobile</div>
-          <div style="font-size:13.5px; color:var(--textFaint);">Adaptado a último momento</div>
-          <div style="display:flex; align-items:center; gap:7px; font-size:13.5px; font-weight:600; color:#059669;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>App propia para tienda y almacén</div>
+        <div class="compare-row">
+          <div class="compare-aspect">Soporte mobile</div>
+          <div class="compare-traditional">Adaptado a último momento</div>
+          <div class="compare-win"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>App propia para tienda y almacén</div>
         </div>
-        <div style="display:grid; grid-template-columns:1.3fr 1fr 1fr; padding:16px clamp(16px,3vw,26px); border-top:1px solid var(--border); align-items:center;">
-          <div style="font-size:14.5px; font-weight:600; color:var(--text);">Idioma</div>
-          <div style="font-size:13.5px; color:var(--textFaint);">Documentación solo en inglés</div>
-          <div style="display:flex; align-items:center; gap:7px; font-size:13.5px; font-weight:600; color:#059669;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Pensado y soportado en español</div>
+        <div class="compare-row">
+          <div class="compare-aspect">Idioma</div>
+          <div class="compare-traditional">Documentación solo en inglés</div>
+          <div class="compare-win"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Pensado y soportado en español</div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- PRECIOS -->
-  <section id="precios" data-reveal style="padding:clamp(64px,8vw,110px) clamp(20px,6vw,40px); background:var(--bgAlt);">
-    <div style="max-width:1280px; margin:0 auto;">
-      <div style="max-width:680px; margin:0 auto 28px; text-align:center;">
-        <h2 style="font-size:clamp(28px,3.4vw,40px); font-weight:800; letter-spacing:-0.02em; margin:0 0 14px; color:var(--text); text-wrap:pretty;">Precios pensados para crecer con tu operación, no en tu contra</h2>
-        <p style="font-size:16.5px; color:var(--textSoft); margin:0; text-wrap:pretty;">Pagas por lo que realmente usas: usuarios y oficinas, no cobros ocultos por asiento. Empieza chico, escala cuando lo necesites.</p>
+  <section id="precios" data-reveal class="section">
+    <div class="container-wide">
+      <div class="section-head" style="max-width:680px;">
+        <h2 class="display">Precios pensados para crecer con tu operación, no en tu contra</h2>
+        <p>Pagas por lo que realmente usas: usuarios y oficinas, no cobros ocultos por asiento. Empieza chico, escala cuando lo necesites.</p>
       </div>
 
-      <div style="max-width:900px; margin:0 auto 40px; background:var(--indigoBg); border-radius:16px; padding:26px 30px; text-align:center;">
-        <p style="font-size:clamp(16px,2vw,19px); font-weight:700; line-height:1.5; color:#4338ca; margin:0; text-wrap:pretty;">En sistemas parecidos, pagar por usuario en un equipo de 50-100 personas cuesta entre US$600 y US$2,500 al mes. Con xFlowPRO, esa misma escala cuesta desde US$417/mes.</p>
+      <div class="banner-callout">
+        <p>En sistemas parecidos, pagar por usuario en un equipo de 50-100 personas cuesta entre US$600 y US$2,500 al mes. Con xFlowPRO, esa misma escala cuesta desde US$417/mes.</p>
       </div>
 
-      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:22px; align-items:stretch;">
+      <div class="grid grid-4" style="align-items:stretch; gap:22px;" data-stagger>
 
         <!-- Plan 1 -->
-        <div style="background:var(--card); border:1px solid var(--border); border-radius:16px; padding:28px 24px; box-shadow:var(--shadow); display:flex; flex-direction:column;">
-          <h3 style="font-size:18px; font-weight:800; margin:0 0 6px; color:var(--text);">Arranque</h3>
-          <div style="display:flex; align-items:baseline; gap:6px; margin-bottom:4px;">
-            <span style="font-size:28px; font-weight:800; color:var(--text);">US$1,000</span>
-            <span style="font-size:13.5px; font-weight:600; color:var(--textSoft);">/año</span>
+        <div class="card price-card">
+          <h3 class="price-name">Arranque</h3>
+          <div class="price-amount">US$1,000<span class="price-suffix">/año</span></div>
+          <div class="price-note">~US$83/mes</div>
+          <p class="price-italic">Para el primer proceso que quieres dejar de perseguir por WhatsApp o Excel.</p>
+          <div class="price-features">
+            <div class="price-feature"><svg class="check" width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6" stroke="#059669" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Hasta 10 usuarios</span></div>
+            <div class="price-feature"><svg class="check" width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6" stroke="#059669" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>1 oficina/sucursal</span></div>
+            <div class="price-feature"><svg class="check" width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6" stroke="#059669" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Hasta 3 flujos activos</span></div>
+            <div class="price-feature"><svg class="check" width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6" stroke="#059669" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Acceso web y app móvil</span></div>
+            <div class="price-feature"><svg class="check" width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6" stroke="#059669" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Soporte por email</span></div>
           </div>
-          <div style="font-size:12.5px; color:var(--textFaint); margin-bottom:14px;">~US$83/mes</div>
-          <p style="font-size:13.5px; color:var(--textSoft); line-height:1.5; margin:0 0 18px; font-style:italic;">Para el primer proceso que quieres dejar de perseguir por WhatsApp o Excel.</p>
-          <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:24px; flex:1;">
-            <div style="display:flex; align-items:flex-start; gap:9px; font-size:13.5px; color:var(--textSoft);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="flex-shrink:0; margin-top:3px;"><path d="M4 12.5l5 5L20 6" stroke="#059669" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Hasta 10 usuarios</span></div>
-            <div style="display:flex; align-items:flex-start; gap:9px; font-size:13.5px; color:var(--textSoft);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="flex-shrink:0; margin-top:3px;"><path d="M4 12.5l5 5L20 6" stroke="#059669" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>1 oficina/sucursal</span></div>
-            <div style="display:flex; align-items:flex-start; gap:9px; font-size:13.5px; color:var(--textSoft);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="flex-shrink:0; margin-top:3px;"><path d="M4 12.5l5 5L20 6" stroke="#059669" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Hasta 3 flujos activos</span></div>
-            <div style="display:flex; align-items:flex-start; gap:9px; font-size:13.5px; color:var(--textSoft);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="flex-shrink:0; margin-top:3px;"><path d="M4 12.5l5 5L20 6" stroke="#059669" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Acceso web y app móvil</span></div>
-            <div style="display:flex; align-items:flex-start; gap:9px; font-size:13.5px; color:var(--textSoft);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="flex-shrink:0; margin-top:3px;"><path d="M4 12.5l5 5L20 6" stroke="#059669" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Soporte por email</span></div>
-          </div>
-          <a href="#contacto" style="text-align:center; background:var(--bgSoft); color:var(--text); text-decoration:none; font-weight:700; font-size:14.5px; padding:12px 18px; border-radius:10px; border:1.5px solid var(--border);">Empezar ahora</a>
+          <a href="#contacto" class="btn btn-ghost btn-press">Empezar ahora</a>
         </div>
 
         <!-- Plan 2 -->
-        <div style="background:var(--card); border:1px solid var(--border); border-radius:16px; padding:28px 24px; box-shadow:var(--shadow); display:flex; flex-direction:column;">
-          <h3 style="font-size:18px; font-weight:800; margin:0 0 6px; color:var(--text);">Crecimiento</h3>
-          <div style="display:flex; align-items:baseline; gap:6px; margin-bottom:4px;">
-            <span style="font-size:28px; font-weight:800; color:var(--text);">US$2,500</span>
-            <span style="font-size:13.5px; font-weight:600; color:var(--textSoft);">/año</span>
+        <div class="card price-card">
+          <h3 class="price-name">Crecimiento</h3>
+          <div class="price-amount">US$2,500<span class="price-suffix">/año</span></div>
+          <div class="price-note">~US$208/mes</div>
+          <p class="price-italic">Para equipos que ya coordinan varias áreas u oficinas.</p>
+          <div class="price-features">
+            <div class="price-feature"><svg class="check" width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6" stroke="#2563EB" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Hasta 40 usuarios</span></div>
+            <div class="price-feature"><svg class="check" width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6" stroke="#2563EB" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>3 oficinas/sucursales</span></div>
+            <div class="price-feature"><svg class="check" width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6" stroke="#2563EB" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Hasta 6 flujos activos</span></div>
+            <div class="price-feature"><svg class="check" width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6" stroke="#2563EB" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Tablero de control completo (atrasos, cuellos de botella)</span></div>
+            <div class="price-feature"><svg class="check" width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6" stroke="#2563EB" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Aprobaciones y reemplazos según organigrama</span></div>
+            <div class="price-feature"><svg class="check" width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6" stroke="#2563EB" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Soporte prioritario</span></div>
           </div>
-          <div style="font-size:12.5px; color:var(--textFaint); margin-bottom:14px;">~US$208/mes</div>
-          <p style="font-size:13.5px; color:var(--textSoft); line-height:1.5; margin:0 0 18px; font-style:italic;">Para equipos que ya coordinan varias áreas u oficinas.</p>
-          <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:24px; flex:1;">
-            <div style="display:flex; align-items:flex-start; gap:9px; font-size:13.5px; color:var(--textSoft);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="flex-shrink:0; margin-top:3px;"><path d="M4 12.5l5 5L20 6" stroke="#2563EB" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Hasta 40 usuarios</span></div>
-            <div style="display:flex; align-items:flex-start; gap:9px; font-size:13.5px; color:var(--textSoft);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="flex-shrink:0; margin-top:3px;"><path d="M4 12.5l5 5L20 6" stroke="#2563EB" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>3 oficinas/sucursales</span></div>
-            <div style="display:flex; align-items:flex-start; gap:9px; font-size:13.5px; color:var(--textSoft);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="flex-shrink:0; margin-top:3px;"><path d="M4 12.5l5 5L20 6" stroke="#2563EB" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Hasta 6 flujos activos</span></div>
-            <div style="display:flex; align-items:flex-start; gap:9px; font-size:13.5px; color:var(--textSoft);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="flex-shrink:0; margin-top:3px;"><path d="M4 12.5l5 5L20 6" stroke="#2563EB" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Tablero de control completo (atrasos, cuellos de botella)</span></div>
-            <div style="display:flex; align-items:flex-start; gap:9px; font-size:13.5px; color:var(--textSoft);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="flex-shrink:0; margin-top:3px;"><path d="M4 12.5l5 5L20 6" stroke="#2563EB" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Aprobaciones y reemplazos según organigrama</span></div>
-            <div style="display:flex; align-items:flex-start; gap:9px; font-size:13.5px; color:var(--textSoft);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="flex-shrink:0; margin-top:3px;"><path d="M4 12.5l5 5L20 6" stroke="#2563EB" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Soporte prioritario</span></div>
-          </div>
-          <a href="#contacto" style="text-align:center; background:var(--bgSoft); color:var(--text); text-decoration:none; font-weight:700; font-size:14.5px; padding:12px 18px; border-radius:10px; border:1.5px solid var(--border);">Solicitar demo</a>
+          <a href="#contacto" class="btn btn-ghost btn-press">Solicitar demo</a>
         </div>
 
         <!-- Plan 3 (Más elegido) -->
-        <div style="position:relative; background:var(--card); border:2px solid #059669; border-radius:16px; padding:32px 24px 28px; box-shadow:0 20px 40px -12px rgba(5,150,105,.28); display:flex; flex-direction:column;">
-          <span style="position:absolute; top:-13px; left:24px; background:#059669; color:#fff; font-size:12px; font-weight:700; padding:5px 12px; border-radius:20px; letter-spacing:.02em;">Más elegido</span>
-          <h3 style="font-size:18px; font-weight:800; margin:0 0 6px; color:var(--text);">xFlowPRO</h3>
-          <div style="display:flex; align-items:baseline; gap:6px; margin-bottom:4px;">
-            <span style="font-size:28px; font-weight:800; color:var(--text);">US$5,000</span>
-            <span style="font-size:13.5px; font-weight:600; color:var(--textSoft);">/año</span>
+        <div class="card card-featured price-card">
+          <span class="ribbon">Más elegido</span>
+          <h3 class="price-name">xFlowPRO</h3>
+          <div class="price-amount">US$5,000<span class="price-suffix">/año</span></div>
+          <div class="price-note">~US$417/mes</div>
+          <p class="price-italic">El plan que hoy usa una cadena de retail en producción, operando sus tiendas día a día.</p>
+          <div class="price-features">
+            <div class="price-feature"><svg class="check" width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6" stroke="#059669" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>De 41 a 75 usuarios</span></div>
+            <div class="price-feature"><svg class="check" width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6" stroke="#059669" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Hasta 10 oficinas/sucursales</span></div>
+            <div class="price-feature"><svg class="check" width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6" stroke="#059669" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Hasta 10 flujos activos</span></div>
+            <div class="price-feature"><svg class="check" width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6" stroke="#059669" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Todo lo del plan Crecimiento</span></div>
+            <div class="price-feature"><svg class="check" width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6" stroke="#059669" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Soporte prioritario con onboarding guiado</span></div>
           </div>
-          <div style="font-size:12.5px; color:var(--textFaint); margin-bottom:14px;">~US$417/mes</div>
-          <p style="font-size:13.5px; color:var(--textSoft); line-height:1.5; margin:0 0 18px; font-style:italic;">El plan que hoy usa una cadena de retail en producción, operando sus tiendas día a día.</p>
-          <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:24px;">
-            <div style="display:flex; align-items:flex-start; gap:9px; font-size:13.5px; color:var(--textSoft);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="flex-shrink:0; margin-top:3px;"><path d="M4 12.5l5 5L20 6" stroke="#059669" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>De 41 a 75 usuarios</span></div>
-            <div style="display:flex; align-items:flex-start; gap:9px; font-size:13.5px; color:var(--textSoft);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="flex-shrink:0; margin-top:3px;"><path d="M4 12.5l5 5L20 6" stroke="#059669" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Hasta 10 oficinas/sucursales</span></div>
-            <div style="display:flex; align-items:flex-start; gap:9px; font-size:13.5px; color:var(--textSoft);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="flex-shrink:0; margin-top:3px;"><path d="M4 12.5l5 5L20 6" stroke="#059669" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Hasta 10 flujos activos</span></div>
-            <div style="display:flex; align-items:flex-start; gap:9px; font-size:13.5px; color:var(--textSoft);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="flex-shrink:0; margin-top:3px;"><path d="M4 12.5l5 5L20 6" stroke="#059669" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Todo lo del plan Crecimiento</span></div>
-            <div style="display:flex; align-items:flex-start; gap:9px; font-size:13.5px; color:var(--textSoft);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="flex-shrink:0; margin-top:3px;"><path d="M4 12.5l5 5L20 6" stroke="#059669" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Soporte prioritario con onboarding guiado</span></div>
-          </div>
-          <a href="#contacto" style="text-align:center; margin-top:auto; background:#059669; color:#fff; text-decoration:none; font-weight:700; font-size:14.5px; padding:12px 18px; border-radius:10px;">Solicitar demo</a>
+          <a href="#contacto" class="btn btn-success btn-press">Solicitar demo</a>
         </div>
 
         <!-- Plan 4 -->
-        <div style="background:var(--card); border:1px solid var(--border); border-radius:16px; padding:28px 24px; box-shadow:var(--shadow); display:flex; flex-direction:column;">
-          <h3 style="font-size:18px; font-weight:800; margin:0 0 6px; color:var(--text);">Empresarial</h3>
-          <div style="display:flex; align-items:baseline; gap:6px; margin-bottom:4px;">
-            <span style="font-size:24px; font-weight:800; color:var(--text);">Hablemos</span>
+        <div class="card price-card">
+          <h3 class="price-name">Empresarial</h3>
+          <div class="price-amount">Hablemos</div>
+          <div class="price-note">Para operaciones de más de 75 usuarios</div>
+          <p class="price-italic">Conversemos tu caso, sin compromiso.</p>
+          <div class="price-features">
+            <div class="price-feature"><svg class="check" width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6" stroke="#7C3AED" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Usuarios, oficinas y flujos a medida</span></div>
+            <div class="price-feature"><svg class="check" width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6" stroke="#7C3AED" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Inicio de sesión corporativo (SSO)</span></div>
+            <div class="price-feature"><svg class="check" width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6" stroke="#7C3AED" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Tiempos de respuesta garantizados</span></div>
+            <div class="price-feature"><svg class="check" width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6" stroke="#7C3AED" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Integraciones a medida (SAP/ERP)</span></div>
+            <div class="price-feature"><svg class="check" width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6" stroke="#7C3AED" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Account manager dedicado</span></div>
           </div>
-          <div style="font-size:12.5px; color:var(--textFaint); margin-bottom:14px;">Para operaciones de más de 75 usuarios</div>
-          <p style="font-size:13.5px; color:var(--textSoft); line-height:1.5; margin:0 0 18px; font-style:italic;">Conversemos tu caso, sin compromiso.</p>
-          <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:24px; flex:1;">
-            <div style="display:flex; align-items:flex-start; gap:9px; font-size:13.5px; color:var(--textSoft);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="flex-shrink:0; margin-top:3px;"><path d="M4 12.5l5 5L20 6" stroke="#7C3AED" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Usuarios, oficinas y flujos a medida</span></div>
-            <div style="display:flex; align-items:flex-start; gap:9px; font-size:13.5px; color:var(--textSoft);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="flex-shrink:0; margin-top:3px;"><path d="M4 12.5l5 5L20 6" stroke="#7C3AED" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Inicio de sesión corporativo (SSO)</span></div>
-            <div style="display:flex; align-items:flex-start; gap:9px; font-size:13.5px; color:var(--textSoft);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="flex-shrink:0; margin-top:3px;"><path d="M4 12.5l5 5L20 6" stroke="#7C3AED" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Tiempos de respuesta garantizados</span></div>
-            <div style="display:flex; align-items:flex-start; gap:9px; font-size:13.5px; color:var(--textSoft);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="flex-shrink:0; margin-top:3px;"><path d="M4 12.5l5 5L20 6" stroke="#7C3AED" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Integraciones a medida (SAP/ERP)</span></div>
-            <div style="display:flex; align-items:flex-start; gap:9px; font-size:13.5px; color:var(--textSoft);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="flex-shrink:0; margin-top:3px;"><path d="M4 12.5l5 5L20 6" stroke="#7C3AED" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Account manager dedicado</span></div>
-          </div>
-          <a href="mailto:hola@xflowpro.com" style="text-align:center; background:var(--bgSoft); color:var(--text); text-decoration:none; font-weight:700; font-size:14.5px; padding:12px 18px; border-radius:10px; border:1.5px solid var(--border);">Agendar sesión</a>
+          <a href="mailto:hola@xflowpro.com" class="btn btn-ghost btn-press">Agendar sesión</a>
         </div>
       </div>
 
       <p style="text-align:center; font-size:13.5px; color:var(--textFaint); max-width:680px; margin:32px auto 0;">Precios anuales en USD, sin sorpresas ni costos ocultos por implementación. Tu plan crece contigo, cuando lo necesites.</p>
 
-      <div style="max-width:820px; margin:36px auto 0; background:var(--card); border:1px solid var(--border); border-radius:14px; padding:22px 26px; box-shadow:var(--shadow); display:flex; align-items:flex-start; gap:14px;">
-        <span style="width:34px; height:34px; border-radius:9px; background:var(--greenBg); color:#059669; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+      <div class="proof-note">
+        <span class="icon-tile" style="width:34px; height:34px; border-radius:9px; background:rgba(5,150,105,.12); margin:0; flex-shrink:0;">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12.5l5 5L20 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </span>
         <p style="font-size:14.5px; line-height:1.6; color:var(--textSoft); margin:0;">Ya en producción: una cadena de retail en Bolivia automatiza arqueo de caja, traspasos entre sucursales y gestión de inventario con xFlowPRO — corriendo hoy en el plan PRO.</p>
       </div>
 
       <div style="max-width:820px; margin:56px auto 0;">
-        <h3 style="font-size:20px; font-weight:800; text-align:center; margin:0 0 26px; color:var(--text);">Preguntas frecuentes sobre precios</h3>
+        <h3 style="font-size:20px; font-weight:800; letter-spacing:-0.02em; text-align:center; margin:0 0 26px; color:var(--text);">Preguntas frecuentes sobre precios</h3>
         <div style="display:flex; flex-direction:column; gap:12px;">
-          <div style="background:var(--card); border:1px solid var(--border); border-radius:12px; overflow:hidden;">
-            <button class="faq-btn" style="width:100%; text-align:left; background:none; border:none; padding:17px 20px; display:flex; align-items:center; justify-content:space-between; gap:12px; cursor:pointer; font-family:inherit;">
-              <span style="font-size:15px; font-weight:600; color:var(--text);">¿Qué pasa si supero los usuarios u oficinas de mi plan?</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="flex-shrink:0; transition:transform .2s ease;" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="var(--textSoft)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="faq-item">
+            <button class="faq-btn">
+              <span>¿Qué pasa si supero los usuarios u oficinas de mi plan?</span>
+              <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="var(--textSoft)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
-            <div class="faq-content" style="display:none; padding:0 20px 18px; font-size:14px; line-height:1.6; color:var(--textSoft);">Subes de plan en cualquier momento, sin perder configuración, flujos ni historial.</div>
+            <div class="faq-content">Subes de plan en cualquier momento, sin perder configuración, flujos ni historial.</div>
           </div>
-          <div style="background:var(--card); border:1px solid var(--border); border-radius:12px; overflow:hidden;">
-            <button class="faq-btn" style="width:100%; text-align:left; background:none; border:none; padding:17px 20px; display:flex; align-items:center; justify-content:space-between; gap:12px; cursor:pointer; font-family:inherit;">
-              <span style="font-size:15px; font-weight:600; color:var(--text);">¿Hay descuento por pago anual?</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="flex-shrink:0; transition:transform .2s ease;" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="var(--textSoft)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="faq-item">
+            <button class="faq-btn">
+              <span>¿Hay descuento por pago anual?</span>
+              <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="var(--textSoft)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
-            <div class="faq-content" style="display:none; padding:0 20px 18px; font-size:14px; line-height:1.6; color:var(--textSoft);">Los precios ya están pensados en modalidad anual; consúltanos por facturación mensual o en tu moneda local.</div>
+            <div class="faq-content">Los precios ya están pensados en modalidad anual; consúltanos por facturación mensual o en tu moneda local.</div>
           </div>
-          <div style="background:var(--card); border:1px solid var(--border); border-radius:12px; overflow:hidden;">
-            <button class="faq-btn" style="width:100%; text-align:left; background:none; border:none; padding:17px 20px; display:flex; align-items:center; justify-content:space-between; gap:12px; cursor:pointer; font-family:inherit;">
-              <span style="font-size:15px; font-weight:600; color:var(--text);">¿Puedo probarlo antes de contratar?</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="flex-shrink:0; transition:transform .2s ease;" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="var(--textSoft)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="faq-item">
+            <button class="faq-btn">
+              <span>¿Puedo probarlo antes de contratar?</span>
+              <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="var(--textSoft)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
-            <div class="faq-content" style="display:none; padding:0 20px 18px; font-size:14px; line-height:1.6; color:var(--textSoft);">Sí, agenda una demo y evaluamos juntos un piloto guiado sobre tu propio proceso.</div>
+            <div class="faq-content">Sí, agenda una demo y evaluamos juntos un piloto guiado sobre tu propio proceso.</div>
           </div>
-          <div style="background:var(--card); border:1px solid var(--border); border-radius:12px; overflow:hidden;">
-            <button class="faq-btn" style="width:100%; text-align:left; background:none; border:none; padding:17px 20px; display:flex; align-items:center; justify-content:space-between; gap:12px; cursor:pointer; font-family:inherit;">
-              <span style="font-size:15px; font-weight:600; color:var(--text);">¿Por qué no cobran por usuario como otros sistemas?</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="flex-shrink:0; transition:transform .2s ease;" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="var(--textSoft)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="faq-item">
+            <button class="faq-btn">
+              <span>¿Por qué no cobran por usuario como otros sistemas?</span>
+              <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="var(--textSoft)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
-            <div class="faq-content" style="display:none; padding:0 20px 18px; font-size:14px; line-height:1.6; color:var(--textSoft);">Porque penaliza a operaciones con muchos usuarios de campo (tiendas, bodegas, sucursales). Preferimos que pagues por el tamaño real de tu operación, no por cada persona que necesita usar el sistema.</div>
+            <div class="faq-content">Porque penaliza a operaciones con muchos usuarios de campo (tiendas, bodegas, sucursales). Preferimos que pagues por el tamaño real de tu operación, no por cada persona que necesita usar el sistema.</div>
           </div>
         </div>
       </div>
@@ -631,82 +1000,82 @@
   </section>
 
   <!-- CTA FINAL / CONTACTO -->
-  <section id="contacto" data-reveal style="padding:clamp(64px,8vw,110px) clamp(20px,6vw,40px); background:var(--heroGradient);">
-    <div style="max-width:1100px; margin:0 auto; display:flex; gap:clamp(32px,5vw,64px); flex-wrap:wrap;">
+  <section id="contacto" data-reveal class="section alt" style="background:radial-gradient(800px 380px at 50% -10%, rgba(37,99,235,.07), transparent 60%), var(--bgAlt);">
+    <div class="container-wide" style="display:flex; gap:clamp(32px,5vw,64px); flex-wrap:wrap;">
 
       <div style="flex:1 1 380px; min-width:280px;">
-        <h2 style="font-size:clamp(28px,3.4vw,38px); font-weight:800; letter-spacing:-0.02em; margin:0 0 16px; color:var(--text); text-wrap:pretty;">¿Listo para dejar de perseguir tareas?</h2>
+        <h2 class="display" style="margin-bottom:16px;">¿Listo para dejar de perseguir tareas?</h2>
         <p style="font-size:16px; line-height:1.6; color:var(--textSoft); margin:0 0 26px; text-wrap:pretty;">Agenda una demo de 30 minutos y te mostramos xFlowPRO corriendo con un proceso real de tu operación.</p>
         <div style="font-size:14.5px; color:var(--textSoft);">
-          ¿Prefieres escribirnos directo? <a href="mailto:hola@xflowpro.com" style="color:#2563EB; font-weight:700; text-decoration:none;">hola@xflowpro.com</a>
+          ¿Prefieres escribirnos directo? <a href="mailto:hola@xflowpro.com" style="color:var(--accent); font-weight:700; text-decoration:none;">hola@xflowpro.com</a>
         </div>
       </div>
 
       <div style="flex:1 1 380px; min-width:280px;">
-        <form id="contactForm" style="background:var(--card); border:1px solid var(--border); border-radius:16px; padding:clamp(22px,3vw,32px); box-shadow:var(--shadow); display:flex; flex-direction:column; gap:14px;">
+        <form id="contactForm" class="form-card">
           <input type="text" id="_hp" name="_hp" tabindex="-1" autocomplete="off" style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0;" aria-hidden="true">
-          <div>
-            <label style="display:block; font-size:13px; font-weight:600; color:var(--textSoft); margin-bottom:6px;">Nombre</label>
-            <input type="text" id="fieldName" required style="width:100%; padding:11px 13px; border-radius:9px; border:1px solid var(--border); background:var(--bgSoft); color:var(--text); font-size:14.5px; font-family:inherit;">
+          <div class="field">
+            <label for="fieldName">Nombre</label>
+            <input type="text" id="fieldName" required>
           </div>
-          <div>
-            <label style="display:block; font-size:13px; font-weight:600; color:var(--textSoft); margin-bottom:6px;">Email</label>
-            <input type="email" id="fieldEmail" required style="width:100%; padding:11px 13px; border-radius:9px; border:1px solid var(--border); background:var(--bgSoft); color:var(--text); font-size:14.5px; font-family:inherit;">
+          <div class="field">
+            <label for="fieldEmail">Email</label>
+            <input type="email" id="fieldEmail" required>
           </div>
-          <div>
-            <label style="display:block; font-size:13px; font-weight:600; color:var(--textSoft); margin-bottom:6px;">Empresa</label>
-            <input type="text" id="fieldCompany" style="width:100%; padding:11px 13px; border-radius:9px; border:1px solid var(--border); background:var(--bgSoft); color:var(--text); font-size:14.5px; font-family:inherit;">
+          <div class="field">
+            <label for="fieldCompany">Empresa</label>
+            <input type="text" id="fieldCompany">
           </div>
-          <div>
-            <label style="display:block; font-size:13px; font-weight:600; color:var(--textSoft); margin-bottom:6px;">Cuéntanos tu proceso (opcional)</label>
-            <textarea id="fieldMessage" rows="3" style="width:100%; padding:11px 13px; border-radius:9px; border:1px solid var(--border); background:var(--bgSoft); color:var(--text); font-size:14.5px; font-family:inherit; resize:vertical;"></textarea>
+          <div class="field">
+            <label for="fieldMessage">Cuéntanos tu proceso (opcional)</label>
+            <textarea id="fieldMessage" rows="3" style="resize:vertical;"></textarea>
           </div>
-          <div id="formError" style="display:none; font-size:13.5px; color:#dc2626; background:var(--redBg); border-radius:8px; padding:10px 12px;"></div>
-          <div id="formSuccess" style="display:none; font-size:15.5px; font-weight:600; color:#059669; background:var(--greenBg); border-radius:8px; padding:14px; text-align:center;">¡Listo! Te vamos a contactar en menos de 24 horas.</div>
-          <button type="submit" id="submitBtn" style="margin-top:6px; background:#2563EB; color:#fff; border:none; font-weight:700; font-size:15px; padding:13px 20px; border-radius:10px; cursor:pointer; font-family:inherit;">Solicitar demo</button>
+          <div id="formError" style="display:none; font-size:13.5px; color:#dc2626; background:rgba(220,38,38,.1); border:1px solid rgba(220,38,38,.2); border-radius:10px; padding:10px 12px;"></div>
+          <div id="formSuccess" style="display:none; font-size:15.5px; font-weight:600; color:#059669; background:rgba(5,150,105,.1); border:1px solid rgba(5,150,105,.2); border-radius:10px; padding:14px; text-align:center;">¡Listo! Te vamos a contactar en menos de 24 horas.</div>
+          <button type="submit" id="submitBtn" class="btn btn-primary btn-press" style="margin-top:4px;">Solicitar demo</button>
         </form>
       </div>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer style="background:var(--bgAlt); border-top:1px solid var(--border); padding:clamp(48px,6vw,72px) clamp(20px,6vw,40px) 32px;">
+  <footer>
     <div style="max-width:1200px; margin:0 auto;">
-      <div style="display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:32px; margin-bottom:40px;">
+      <div class="footer-grid">
         <div>
-          <a href="#top" style="display:flex; align-items:center; gap:10px; text-decoration:none; margin-bottom:14px;">
-            <img id="footerLogoImg" src="uploads/logo_mini.png" alt="xFlowPRO" style="width:28px; height:auto;">
-            <span style="font-size:18px; font-weight:800; letter-spacing:-0.02em; color:var(--text);">xflow<span style="color:#7C3AED;">PRO</span></span>
+          <a href="#top" class="brand" style="margin-bottom:14px;">
+            <img id="footerLogoImg" src="uploads/logo_mini.png" alt="xFlowPRO" class="brand-logo" style="width:28px;">
+            <span class="brand-name" style="font-size:18px;">xflow<em>PRO</em></span>
           </a>
           <p style="font-size:14px; color:var(--textSoft); max-width:280px; line-height:1.55; margin:0;">El orden que tu operación estaba necesitando.</p>
         </div>
         <div>
-          <div style="font-size:13px; font-weight:700; color:var(--text); margin-bottom:14px;">Producto</div>
-          <div style="display:flex; flex-direction:column; gap:10px;">
-            <a href="#funcionalidades" style="font-size:14px; color:var(--textSoft); text-decoration:none;">Funcionalidades</a>
-            <a href="#casos" style="font-size:14px; color:var(--textSoft); text-decoration:none;">Casos de uso</a>
-            <a href="#precios" style="font-size:14px; color:var(--textSoft); text-decoration:none;">Precios</a>
-            <a href="#contacto" style="font-size:14px; color:var(--textSoft); text-decoration:none;">Solicitar demo</a>
+          <div class="footer-col-title">Producto</div>
+          <div class="footer-links">
+            <a href="#funcionalidades">Funcionalidades</a>
+            <a href="#casos">Casos de uso</a>
+            <a href="#precios">Precios</a>
+            <a href="#contacto">Solicitar demo</a>
           </div>
         </div>
         <div>
-          <div style="font-size:13px; font-weight:700; color:var(--text); margin-bottom:14px;">Compañía</div>
-          <div style="display:flex; flex-direction:column; gap:10px;">
-            <a href="#producto" style="font-size:14px; color:var(--textSoft); text-decoration:none;">Sobre nosotros</a>
-            <a href="#contacto" style="font-size:14px; color:var(--textSoft); text-decoration:none;">Contacto</a>
+          <div class="footer-col-title">Compañía</div>
+          <div class="footer-links">
+            <a href="#producto">Sobre nosotros</a>
+            <a href="#contacto">Contacto</a>
           </div>
         </div>
         <div>
-          <div style="font-size:13px; font-weight:700; color:var(--text); margin-bottom:14px;">Contacto</div>
-          <div style="display:flex; flex-direction:column; gap:10px; font-size:14px; color:var(--textSoft);">
-            <span>www.xflowpro.com</span>
-            <a href="mailto:hola@xflowpro.com" style="font-size:14px; color:var(--textSoft); text-decoration:none;">hola@xflowpro.com</a>
+          <div class="footer-col-title">Contacto</div>
+          <div class="footer-links" style="gap:10px; font-size:14px; color:var(--textSoft);">
+            <span class="footer-copy">www.xflowpro.com</span>
+            <a href="mailto:hola@xflowpro.com">hola@xflowpro.com</a>
           </div>
         </div>
       </div>
-      <div style="border-top:1px solid var(--border); padding-top:22px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
-        <span style="font-size:13px; color:var(--textFaint);">© 2026 xFlowPRO. Todos los derechos reservados.</span>
-        <a href="privacidad.html" style="font-size:13px; color:var(--textFaint); text-decoration:none;">Política de Privacidad</a>
+      <div class="footer-bottom">
+        <span>© 2026 xFlowPRO. Todos los derechos reservados.</span>
+        <a href="privacidad.html">Política de Privacidad</a>
       </div>
     </div>
   </footer>
@@ -714,13 +1083,14 @@
 </div>
 
 <script>
+  document.documentElement.classList.add('js');
   const API_BASE_URL = 'https://api.elevax.io';
 
   // Theme toggle
   const themeBtn = document.getElementById('themeToggleBtn');
   const logoImg = document.getElementById('logoImg');
   const footerLogoImg = document.getElementById('footerLogoImg');
-  
+
   themeBtn.addEventListener('click', () => {
     document.body.classList.toggle('dark');
     const isDark = document.body.classList.contains('dark');
@@ -728,28 +1098,142 @@
     footerLogoImg.src = isDark ? 'uploads/logo_mini_w.png' : 'uploads/logo_mini.png';
   });
 
-  // FAQ accordion
-  document.querySelectorAll('.faq-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const content = btn.nextElementSibling;
-      const svg = btn.querySelector('svg');
-      const isOpen = content.style.display === 'block';
-      content.style.display = isOpen ? 'none' : 'block';
-      svg.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+  // Header shadow on scroll (Apple-style elevation)
+  const header = document.getElementById('siteHeader');
+  const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 8);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Smooth anchor scrolling with header offset + Apple-style cubic easing
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const headerEl = document.getElementById('siteHeader');
+  const smoothScrollTo = (to, duration = 800) => {
+    if (reducedMotion) { window.scrollTo(0, to); return; }
+    const start = window.scrollY;
+    const change = to - start;
+    const t0 = performance.now();
+    const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    const step = now => {
+      const t = Math.min(1, (now - t0) / duration);
+      window.scrollTo(0, start + change * ease(t));
+      if (t < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const hash = a.getAttribute('href');
+      if (hash.length < 2) return;
+      const target = document.querySelector(hash);
+      if (!target) return;
+      e.preventDefault();
+      const top = target.getBoundingClientRect().top + window.scrollY - headerEl.offsetHeight + 2;
+      smoothScrollTo(top);
     });
   });
 
-  // Scroll reveal
+  // Hero parallax — the mock travels slower and settles as you scroll
+  const mock = document.querySelector('[data-parallax]');
+  const heroSection = document.getElementById('producto');
+  if (mock && heroSection) {
+    const onParallax = () => {
+      const r = heroSection.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > window.innerHeight) return;
+      const p = Math.min(1, Math.max(0, (window.innerHeight - r.top) / window.innerHeight));
+      mock.style.transform = `translateY(${(1 - p) * 48}px) scale(${.94 + p * .06})`;
+    };
+    window.addEventListener('scroll', onParallax, { passive: true });
+    onParallax();
+  }
+
+  // Responsive demo video — web on desktop, mobile on mobile
+  const heroVideo = document.getElementById('heroVideo');
+  const mqMobile = matchMedia('(max-width: 860px)');
+  const swapVideo = () => {
+    if (!heroVideo) return;
+    const src = mqMobile.matches ? 'media/mobile.mp4' : 'media/web.mp4';
+    const source = heroVideo.querySelector('source');
+    if (source.getAttribute('src') !== src) {
+      source.setAttribute('src', src);
+      heroVideo.load();
+      heroVideo.play().catch(() => {});
+    }
+  };
+  swapVideo();
+  mqMobile.addEventListener('change', swapVideo);
+
+  // FAQ accordion (springy expand)
+  document.querySelectorAll('.faq-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(openItem => openItem.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+
+  // Stagger — reveal grid children on a cascade
+  document.querySelectorAll('[data-stagger]').forEach(grid => {
+    [...grid.children].forEach((el, i) => {
+      el.classList.add('reveal');
+      el.style.setProperty('--reveal-delay', `${Math.min(i * 90, 630)}ms`);
+    });
+  });
+
+  // Count-up animator
+  const animateCount = (el) => {
+    const target = parseFloat(el.dataset.target);
+    const decimals = parseInt(el.dataset.decimals || '0', 10);
+    const suffix = el.dataset.suffix || '';
+    const duration = 1200;
+    const t0 = performance.now();
+    const ease = t => 1 - Math.pow(1 - t, 3);
+    const step = now => {
+      const t = Math.min(1, (now - t0) / duration);
+      el.textContent = (ease(t) * target).toFixed(decimals) + suffix;
+      if (t < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+
+  // Reveal + counters + progress bars observer
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      if (el.classList.contains('count')) {
+        animateCount(el);
+        observer.unobserve(el);
+      } else if (el.classList.contains('bar-fill')) {
+        el.style.width = el.dataset.width + '%';
+        observer.unobserve(el);
+      } else {
+        el.classList.add('is-visible');
+        observer.unobserve(el);
       }
     });
   }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
 
-  document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
+  document.querySelectorAll('[data-reveal], .reveal, .count, .bar-fill').forEach(el => observer.observe(el));
+
+  // Hero entrance — run once the demo video can play so the cascade is actually seen
+  const heroAnims = document.querySelectorAll('.hero-anim');
+  let heroPlayed = false;
+  const playHero = () => {
+    if (heroPlayed) return;
+    heroPlayed = true;
+    heroAnims.forEach(el => el.classList.add('play'));
+  };
+  const heroVideoEl = document.getElementById('heroVideo');
+  if (heroVideoEl) {
+    heroVideoEl.addEventListener('loadeddata', playHero, { once: true });
+    heroVideoEl.addEventListener('canplay', playHero, { once: true });
+    setTimeout(() => { if (heroVideoEl.readyState >= 2) playHero(); }, 300);
+    setTimeout(playHero, 1500);
+  } else {
+    window.addEventListener('load', playHero);
+    setTimeout(playHero, 900);
+  }
 
   // Contact form submit
   const form = document.getElementById('contactForm');
@@ -760,7 +1244,7 @@
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     errorDiv.style.display = 'none';
-    
+
     const name = document.getElementById('fieldName').value.trim();
     const email = document.getElementById('fieldEmail').value.trim();
     const company = document.getElementById('fieldCompany').value.trim();
